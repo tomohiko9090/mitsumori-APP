@@ -17,17 +17,19 @@ ActiveRecord::Schema.define(version: 2022_08_08_075632) do
 
   create_table "tasks", force: :cascade do |t|
     t.integer "user_id"
+    t.integer "estimated_time"
+    t.integer "end_time"
     t.string "task_name"
-    t.boolean "status"
-    t.time "estimated_time"
-    t.time "end_time"
+    t.integer "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "name"
+    t.integer "level"
     t.date "birth_date"
+    t.string "name"
+    t.string "nickname"
     t.string "email"
     t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false

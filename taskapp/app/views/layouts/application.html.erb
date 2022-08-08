@@ -14,7 +14,7 @@
     <h1>タスク見積もり能力向上アプリ「mitsumo」</h1>
     <p>
     <% if logged_in? %>
-      <%= link_to "HOME", root_path %>
+      <%= link_to "HOME", tasks_path %>
       <%# link_to "みんなの蔵書", books_path %>
       <%# link_to "お気に入り", likes_path %>
       <%= link_to "ログアウト", logout_path, method: :delete %>

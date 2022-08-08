@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
     def already_logged_in
         if logged_in?
             flash[:danger] = "もうログインしてるよ？"
-            redirect_to root_path
+            redirect_to tasks_path
         end
     end
 end

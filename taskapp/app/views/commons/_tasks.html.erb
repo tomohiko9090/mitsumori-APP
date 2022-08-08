@@ -1,0 +1,23 @@
+<table>
+    <tr>
+        <th>タスク名</th>
+        <th>ユーザーid</th>
+        <th>タスク進捗</th>
+        <th>見積もり時間</th>
+        <th>実績時間</th>
+        <th>登録日時</th>
+        <th>変更日時</th>
+    </tr>
+    <% @tasks.each do |task| %>
+    <tr>
+        <td><%= task.task_name %></td>
+        <td><%= task.user_id %></td>
+        <td><%= task.status %></td>
+        <%# link_to book.title, book_path(book) %>
+        <td><%= task.estimated_time %></td>
+        <td><%# "有り" if book.review.present? %></td>
+        <td><%= task.created_at %></td>
+        <td><%= task.updated_at %></td>
+    </tr>
+    <% end %>
+</table>

@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
-  # before_action :require_logged_in
-  # before_action :set_task, only: [:show, :edit, :update, :destroy]
-  # before_action :correct_user, only: [:edit, :update, :destroy]
+  before_action :require_logged_in
+  before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :correct_user, only: [:edit, :update, :destroy]
   def index
     @tasks = Task.all
   end
@@ -10,14 +10,14 @@ class TasksController < ApplicationController
   end
 
   def new
-    @task = =Task.new
+    @task = Task.new
   end
 
   def create
     @task = current_user.tasks.build(task_params)
     if @task.save
       flash[:success] = "登録できたんご"
-      redirect_to @show
+      redirect_to @task
     else
       flash.now[:danger] = "登録できんかったわ"
       render :new
@@ -54,7 +54,7 @@ class TasksController < ApplicationController
 
   def correct_user
     unless @task.user_id == current_user.id
-      redirect_to root_path
+      redirect_to tasks_path
     end
   end
 end

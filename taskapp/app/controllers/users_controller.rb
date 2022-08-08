@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     def show
         @user = current_user
         # @tasks = current_user.tasks.all
-        # render root_path
+        # render tasks_path
      end
 
     def create
@@ -21,7 +21,7 @@ class UsersController < ApplicationController
         if @user.save 
           session[:user_id] = @user.id
           flash[:success] = "登録したよん🎉ログインしよっさ！"
-          redirect_to root_path
+          redirect_to tasks_path
         else
           flash[:danger] = "ざんねん。\n登録できんかったわ🙅‍♂️"
           render :new
