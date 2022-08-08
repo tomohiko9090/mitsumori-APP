@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Taskapp</title>
+    <title>mitsumo</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -11,6 +11,20 @@
   </head>
 
   <body>
+    <h1>タスク見積もり能力向上アプリ「mitsumo」</h1>
+    <p>
+    <% if logged_in? %>
+      <%= link_to "HOME", root_path %>
+      <%# link_to "みんなの蔵書", books_path %>
+      <%# link_to "お気に入り", likes_path %>
+      <%= link_to "ログアウト", logout_path, method: :delete %>
+    <% else %>
+      <%= link_to "会員登録", signup_path %>
+      <%= link_to "ログイン", login_path %>
+    <% end %>
+    </p>
+
+    <%= render "commons/flash" %>
     <%= yield %>
   </body>
 </html>
