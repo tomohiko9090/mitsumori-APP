@@ -1,5 +1,5 @@
 # Task-APP
-タスク見積もり向上のためのアプリ「mitsumo」
+タスク見積もり向上のためのアプリ<b>「mitsumo」<b>
 
 ## リンク一覧
 - 原先生
@@ -10,13 +10,11 @@
   - [ワイヤーフレーム](https://docs.google.com/presentation/d/1NFN-4HQrUUHpKZJMY7fSJQKlNyEoEVLvPS-sP0J-5Cw/edit#slide=id.p)
   - [スライド発表](https://docs.google.com/presentation/d/1pP8PoIwpLFg5yyZ4kPjM-vtRJusNTsBewJEeBgUqjoQ/edit)
 
-## 機能
+## 4つの機能
 - タスクをサブタスクに分解ができる
-- タスクの見積もりができる
+- タスクの見積もりと乖離が可視化されている
 - タスクの見積もりから自分の見積もりレベルがわかる
 - 仲間とタスクの見積もりレベルを競争できる
-
-## リンク一覧
 
 ## 開発の日程調整
 ### 1日目 8/8(月)
