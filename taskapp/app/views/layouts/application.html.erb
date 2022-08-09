@@ -12,9 +12,13 @@
 
   </head>
 
-  <header>タスク見積もり能力向上アプリ「mitsumo」</header>
-  <body class="container">
+  <body>
+  <header>
+      <div class="container"><h1>タスク見積もり能力向上アプリ「mitsumo」</h1></div>
+  </header>
 
+  <main class="container">
+    <br>
     <p>
     <% if logged_in? %>
       <%= link_to "HOME", tasks_path %>
@@ -27,6 +31,10 @@
 
     <%= render "commons/flash" %>
     <%= yield %>
+  </main>
+
+  <footer>
+      <div class="container">製作者：未来のワクワクさん</div>
+  </footer>
   </body>
-  <footer>製作者：未来のワクワクさん</footer>
 </html>

@@ -6,7 +6,7 @@ class TasksController < ApplicationController
   def index
     @user = current_user
     @task = Task.new
-    @tasks = Task.where(user_id: @user.id).page(params[:page]).per(20)
+    @tasks = Task.where(user_id: @user.id).order(:created_at).page(params[:page]).per(20)
   end
 
   def show
