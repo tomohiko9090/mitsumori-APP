@@ -1,0 +1,378 @@
+\l
+\q
+create database sample;
+\l
+\c sample
+\i OSDBdata.sql
+\i OSDBdata.sql
+\i OSDBdata.sql
+\q
+\i OSDBdata.sql
+select * from employ
+select * from employee
+\d employee
+select emp_name, barthday, sal from employee
+select emp_name, barthday, sal from employee;
+select emp_name, barthday, sal from employee
+select emp_name, barthday, sal from employee;
+select emp_name, barthday, sal from employee;
+select emp_name, birthday, sal from employee;
+select emp_name, birthday, sal*12 AS 年収 from employee;
+select emp_name, birthday, sal, cast(sal *12 as int) as 年収 from empoyee 
+select emp_name, birthday, sal, cast(sal *12 as int) as 年収 from empoyee;
+select emp_name, birthday, sal, cast(sal *12 as int) as 年収 from empoyee;
+select emp_name, birthday, sal, cast(sal *12 as int) as 年収 from employee;
+select emp_name, birthday, sal, cast(sal*12 as int)::int as 年収 from employee;
+select emp_name, birthday, sal, (sal*12 as int)::int as 年収 from employee;
+select emp_name, birthday, sal, (sal*12)::int as 年収 from employee;
+select emp_name, to_char(birthday, 'Day, Month DD, YYYY') FROM employee;
+select emp_name, to_char(sal, '9G999G999D99') FROM employee;
+select emp_name, to_char(sal, '9G9999G99D99') FROM employee;
+\pset null '(null)'
+\p set null '(null)'
+\pset null '(null)'
+select * from employee
+select * from employee;
+select * from employee;
+\pset null '(ないよ〜)'
+select * from employee;
+select emp_name, birthday, sal , comm, sal + comm from employee;
+select emp_name, case when sex = 1 then '男' else '女' end from employee;
+select emp_name, case when sex = 1 then '男' else '女' end as seibetu from employee;
+select emp_name, case when sex = 1 then '男' else '女' end as 性別 from employee;
+select emp_name, case sex = 1 when then '男' else '女' end as 性別 from employee;
+select emp_name, case sex when 1 then '男' else '女' end as 性別 from employee;
+select emp_name, birthday, sal, comm, sal + CASE, when comm  IS null then 0 else comm end from employee;
+select emp_name, birthday, sal, comm, sal + CASE when comm  IS null then 0 else comm end from employee;
+select * from employee order by birthday;
+select * from employee order by sal desc;
+select * from employee order by sex, sal desc;
+select emp_name, birthday, sal, comm, sal + comm, from employee order by 5 desc;
+select emp_name, birthday, sal, comm, sal + comm from employee order by 5 desc;
+select emp_name, birthday, sal, comm, sal + comm as 月収 from employee order by 月収 desc;
+select * from employee order by sal desc limit 3;
+select * from product
+select * from product;
+select prod_name, cost, case when discount is null then 1 else discount end, cost*discount as 割引価格 from product;
+select prod_name, cost, discont from product;
+select prod_name, cost, discount from product; 
+select prod_name, cost, discount, cost*discount from product;
+select prod_name, cost, discount, cost*discount as 割引価格 from product;
+select prod_name, cost, case when discount is null , cost*discount as 割引価格 from product;
+select prod_name, cost, case when discount is null, cost*discount as 割引価格 from product;
+select prod_name, cost, case when discount is null then 0 else discount end, cost*discount as 割引価格 from product;
+select prod_name, cost, case when discount is null then 1 else discount end, cost*discount as 割引価格 from product;
+select prod_name, cost, case when discount is null then 1 else discount end, to_char(cost*discount, '9G999G999D99') as 割引価格 from product;
+select prod_name, cost, case when discount is null then 1 else discount end, to_char(cost*discount, '9G999G999D99') as 割引価格 from product from order by desc;
+select prod_name, cost, case when discount is null then 1 else discount end, to_char(cost*discount, '9G999G999D99') as 割引価格 from product from order by 割引価格 desc;
+select prod_name, cost, case when discount is null then 1 else discount end, to_char(cost*discount, '9G999G999D99') as 割引価格 from product order by 割引価格 desc;
+select prod_name, cost, case when discount is null then 1 else discount end, to_char(cost*discount, '9G999G999D99') as 割引価格 from product order by 割引価格 desc limit 3;
+select prod_name, cost, case when discount is null then 1 else discount end, to_char(cost*discount, '9G999G999D99') as 割引価格 from product order by 割引価格 desc limit 3 offset 3;
+postgres=# select prod_name, cost, case when discount is null then 1 else discount end, cost*discount as 割引価格 from product; //問題4
+select prod_name, cost, case when discount is null then 1 else discount end, cost*discount as 割引価格 from product;
+select prod_name, cost * coalesce(discount, 1) as 割引価格 from product;
+select prod_name, cost, discount, cost * coalesce(discount, 1) as 割引価格 from product;
+select emp_name, sal from employee where sal >= 2000;
+select emp_name, sal from employee where sex = 2;
+select emp_name, sal from employee where emp_name = "安倍 弘江";
+select emp_name, sal from employee where emp_name = '安倍 弘江';
+select emp_name, sal from employee where emp_name = '安部 弘江';
+select emp_name, sal from employee where birthday >= '1980-08-01';
+select emp_name, sal from employee where emp_id = '20';
+select emp_name, sal from employee where sal > 2000 and sal <=3000; 
+select emp_name, sal from employee where sal > 2000 and sex = 2; 
+select emp_name, sal from employee where emp_id = 2 or emp_id = 4 or emp_id = 7; 
+select emp_name, sal from employee where sal >= 2000 or sex = 2; 
+select emp_name, sal from employee where (sal >= 2000 and sal <= 3000) or sex = 2; 
+select emp_name, sal from employee where not ((sal >= 2000 and sal <= 3000)) or sex = 2; 
+select emp_name, sal from employee where not ((sal >= 2000 and sal <= 3000) or sex = 2
+select * from customer where address like '%大阪市%';
+select * customer where address not like '東京%'
+postgres=# select * customer where address not like '東京%';
+select * customer where address not like '東京%'
+postgres=# select * customer where address not like '東京%';
+select * customer where address not like '東京%'
+postgres=# select * customer where address not like '東京%';
+select * from customer where cust_name like '_田%'
+select * from customer where cust_name like '_田%';
+select * from customer where cust_name like '_田%';
+select * customer where address not like '東京%';
+select * customer where address not like '%東京%';
+select * customer where address not like '東京%';
+select * from customer where address not like '東京%';
+select * from employee ehere comm IS not null;
+select * from employee where comm IS not null;
+select * from product cost > 2000;
+select * from product where cost > 2000;
+select * from product where cost > 20000;
+select cost_id, cust_name from product fax IS null;
+select cost_id, cust_name from product where fax IS null;
+select cost_id, cust_name from product where fax IS null;
+select cust_id, cust_name from product where fax IS null;
+select cust_id, cust_name from customer where fax IS null;
+select sales_no, psales_no, proid_id, price from sales where psales_no >= 110 and psales_no < 120;
+select sales_no, psales_no, prod_id, price from sales where psales_no >= 110 and psales_no < 120;
+select prod_id, prod_name cost*discount from product where prod_id in (102, 104, 106);
+select prod_id, prod_name, cost*discount from product where prod_id in (102, 104, 106);
+select prod_id, prod_name, cost*discount from product where prod_id in (102, 104, 106) order by cost*discount;
+select prod_id, prod_name, cost*discount from product where prod_id in (102, 104, 106) order by cost*discount desc;
+select cust_id, cust_address, delivery_date from packedsales where cust_address like '%渋谷区%' and delivery_date like '1996'; 
+select cust_id, cust_address, delivery_date from packedsales where cust_address like '%渋谷区%' and delivery_date like '%1996%'; 
+select cust_id, cust_address, delivery_date from packedsales where cust_address like '%渋谷区%' and delivery_date like '%1996%'; 
+select cust_id, cust name, tel from customer where cust_id not in (03, 06);   
+select cust_id, cust_name, tel from customer where cust_id not in (03, 06);
+select cust_id, cust_name, tel from customer where tel like '03%' and tel like '06%';
+select cust_id, cust_name, tel from customer where tel like '03%' or tel like '06%';
+select cust_id, cust_name, tel from customer where tel not like '03%' or tel like '06%';
+select cust_id, cust_address, delivery_date from packedsales where cust_address like '%渋谷区%' and delivery_date like '%1996%';
+select cust_id, cust_address, delivery_date from packedsales where cust_address like '%渋谷区%' and delivery_date in '1996';
+select cust_id, cust_address, delivery_date from packedsales where cust_address like '%渋谷区%' and delivery_date between '1996-01-01' and '1996-12-31';
+select cust_id, cust_name, tel from customer where tel not like '03%' or tel like '06%';
+()
+select * from customer
+select * from customer;
+select * from customer
+select * from customer;
+select * from customer;
+select * from customer where tel != fax;
+select * from customer where tel != fax or fax is null;
+select * from employee
+select * from employee;
+select * from employee;
+select emp_id, emp_name, (current_date-birthday)/365.25 as 誕生日 from employee;
+select emp_id, emp_name, CONVERT(int, (current_date-birthday)/365.25) as 年齢 from employee;
+select emp_id, emp_name, to_char((current_date-birthday)/365.25, '99歳')  as 年齢 from employee;
+select count(*), sum(sal), avg(sal), min(sal), max(sal) from employee;
+select count(*), sum(sal), avg(sal), min(sal), max(sal) from employee where dept_id = 30;
+select count(*)-count(comm) from employee;
+select count(*)-count(comm) as nullでない人 from employee;
+\d employe
+\d employe;
+\d employee;
+inasert into employee value (20, 40, '山田 花子', '1980-01-02', current_date, 2, 4000, null)
+;
+insert into employee value (20, 40, '山田 花子', '1980-01-02', current_date, 2, 4000, null);
+insert into employee values (20, 40, '山田 花子', '1980-01-02', current_date, 2, 4000, null);
+select * from employee
+;
+insert into employee(emp_id, emp_name) values(21, '渡辺 健一');
+select * from employee
+;
+insert into department(dept_id, dept_name, loc, mgr_id, adept_id)
+    select dept_id + 5, '第2' || dept_name, loc, mgr_id, dept_id from department; 
+select * from employee;
+select * from department;
+insert into employee values (100, 60, '', '1997-04-05', current_date, 1, 9999, null);
+select * from employee;
+select * from department;
+insert into department values (60, 'R&D', '福井県大野市', 0, 20);
+select * from department;
+update employee set sal = sal * 1.2;
+select * from employee;
+update employee set sal = sal - 1000 where sal >= 5000;
+select * from employee;
+update employee set sal = (SELECT avg(sal) from employee) where dept_id = 40;
+select * from employee;
+select * from employee;
+update employee set birthday = null;
+select * from employee;
+UPDATE department 
+    set loc = '神奈川県川崎市'
+    where dept_id >= 20 and dept_id < 30;
+select * from department;
+update department
+    set emp_id = (select emp_id from employee where sal = (SELECT min(sal) from employee));
+update employee
+    set emp_id = (select emp_id from employee where sal = (SELECT min(sal) from employee));
+update employee
+    set mgr_id = (select emp_id from employee where sal = (SELECT min(sal) from employee))
+    where emp_id = (select emp_id from employee where sal = (SELECT min(sal) from employee));
+update department
+    set mgr_id = (select emp_id from employee where sal = (SELECT min(sal) from employee))
+    where emp_id = (select emp_id from employee where sal = (SELECT min(sal) from employee));
+update department
+    set mgr_id = (select emp_id from employee where sal = (SELECT min(sal) from employee))
+    where sal = (SELECT min(sal) from employee);
+update department
+    set mgr_id = (select emp_id from employee where sal = (SELECT min(sal) from employee))
+    where mgr_id = 40;
+update department
+    set mgr_id = (select emp_id from employee where sal = (SELECT min(sal) from employee))
+    where adept_id = 40;
+select * from department;
+select emp_id from employee where sal = (SELECT min(sal) from employee)
+;
+delete from employee where sal >= 5000;
+ls
+select * from employee;
+ls
+select * from employee;
+select * from employee;
+delete from from employee;
+delete from employee;
+SELECT * product;
+SELECT * from product;
+select prod_id
+    where discount is null;
+select prod_id
+    from product
+    where discount is null;
+DELETE 
+    from product
+    where discount is null;
+delete from product;
+TRUNCATE department;
+create DATABASE testing;
+\l
+\c testing
+drop database testing;
+\
+drop database testing;
+\c sample
+drop database testing;
+create DATABASE testing;
+\c testing
+\c sample 
+drop table empl0yee;
+drop table employee;
+drop table employee;
+create table 
+     emplyee(
+        emp_id INTEGER PRIMARY KEY --担当者
+       ,dept_id INTEGER NOT NULL REFERENCES department
+       ,emp_name VARCHAR(20) NOT NULL 
+       ,birthday date 
+       ,hiredate date not NULL DEFAULT CURRENT_DATE
+       ,sex INTEGER not null CHECK(sex in (1,2)) DEFAULT 1
+       ,sal NUMERIC(9,2) not null CHECK(sal >= 0)
+       ,comm NUMERIC(7,2)
+       ,UNIQUE (dept_id, emp_name)
+     );
+select * from department;
+select * from department;
+select * from department;
+\d
+\l
+\i OSDBdata.sql
+select * from department;
+create table 
+     emplyee(
+        emp_id INTEGER PRIMARY KEY --担当者
+       ,dept_id INTEGER NOT NULL REFERENCES department
+       ,emp_name VARCHAR(20) NOT NULL 
+       ,birthday date 
+       ,hiredate date not NULL DEFAULT CURRENT_DATE
+       ,sex INTEGER not null CHECK(sex in (1,2)) DEFAULT 1
+       ,sal NUMERIC(9,2) not null CHECK(sal >= 0)
+       ,comm NUMERIC(7,2)
+       ,UNIQUE (dept_id, emp_name)
+     );
+select * from employee;
+drop table employee;
+create table 
+     emplyee(
+        emp_id INTEGER PRIMARY KEY --担当者
+       ,dept_id INTEGER NOT NULL REFERENCES department
+       ,emp_name VARCHAR(20) NOT NULL 
+       ,birthday date 
+       ,hiredate date not NULL DEFAULT CURRENT_DATE
+       ,sex INTEGER not null CHECK(sex in (1,2)) DEFAULT 1
+       ,sal NUMERIC(9,2) not null CHECK(sal >= 0)
+       ,comm NUMERIC(7,2)
+       ,UNIQUE (dept_id, emp_name)
+     );
+drop table employee;
+create table 
+     emplyee(
+        emp_id INTEGER PRIMARY KEY --担当者
+       ,dept_id INTEGER NOT NULL REFERENCES department
+       ,emp_name VARCHAR(20) NOT NULL 
+       ,birthday date 
+       ,hiredate date not NULL DEFAULT CURRENT_DATE
+       ,sex INTEGER not null CHECK(sex in (1,2)) DEFAULT 1
+       ,sal NUMERIC(9,2) not null CHECK(sal >= 0)
+       ,comm NUMERIC(7,2)
+       ,UNIQUE (dept_id, emp_name)
+     );
+create table 
+     emplyee(
+        emp_id INTEGER PRIMARY KEY --担当者
+       ,dept_id INTEGER NOT NULL REFERENCES department
+       ,emp_name VARCHAR(20) NOT NULL 
+       ,birthday date 
+       ,hiredate date not NULL DEFAULT CURRENT_DATE
+       ,sex INTEGER not null CHECK(sex in (1,2)) DEFAULT 1
+       ,sal NUMERIC(9,2) not null CHECK(sal >= 0)
+       ,comm NUMERIC(7,2)
+       ,UNIQUE (dept_id, emp_name)
+     );
+create table emplyee (
+        emp_id INTEGER PRIMARY KEY --担当者
+       ,dept_id INTEGER NOT NULL REFERENCES department
+       ,emp_name VARCHAR(20) NOT NULL 
+       ,birthday date 
+       ,hiredate date not NULL DEFAULT CURRENT_DATE
+       ,sex INTEGER not null CHECK(sex in (1,2)) DEFAULT 1
+       ,sal NUMERIC(9,2) not null CHECK(sal >= 0)
+       ,comm NUMERIC(7,2)
+       ,UNIQUE (dept_id, emp_name)
+     );
+\q
+\d
+\d products
+rails db:rollback
+;
+\q
+\d
+\d product
+\d products;
+rails g migration AddMemoToProducts memo:string
+;
+\s
+\q
+\d
+\d products
+select * from products
+;
+\q
+select * from product
+;
+select * from products;
+\q
+\d products
+select * from products
+;
+select * from products
+;
+\q
+\d
+\q
+\d users
+select * from users
+;
+\q
+select * from users
+;
+:wq
+;
+;
+\q
+ls
+;
+\d likes
+select * from likes
+;
+\q
+\d book
+\d books
+\q
+\d
+select * from tasks
+;
+\q
+select * from tasks;
+\q
+\d users
+;
+\q
+\s users

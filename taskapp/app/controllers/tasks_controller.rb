@@ -2,8 +2,11 @@ class TasksController < ApplicationController
   before_action :require_logged_in
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   before_action :correct_user, only: [:edit, :update, :destroy]
+
   def index
-    @tasks = Task.all
+    @user = current_user
+    @task = Task.new
+    @tasks = Task.where(user_id: @user.id).page(params[:page]).per(20)
   end
 
   def show
@@ -14,12 +17,12 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = current_user.tasks.build(task_params)
+    @task = current_user.task.build(task_params)
     if @task.save
-      flash[:success] = "登録できたんご"
-      redirect_to @task
+      flash[:success] = "登録できました"
+      redirect_to root_path
     else
-      flash.now[:danger] = "登録できんかったわ"
+      flash.now[:danger] = "登録できませんでした"
       render :new
     end
   end
@@ -29,23 +32,64 @@ class TasksController < ApplicationController
 
   def update
     if @task.update(task_params)
-      flash[:success] = "更新できたんご"
-      redirect_to @task
+      flash[:success] = "更新できました"
+      redirect_to root_path
     else
-      flash.now[:danger] = "更新できんかったわ"
+      flash.now[:danger] = "更新できませんでした"
       render :edit
     end
   end
 
   def destroy
     @task.destroy
-    flash[:success] = "削除したぞ"
+    flash[:success] = "削除完了"
+    redirect_to root_path
+  end
+
+  def change_status
+    status_num = params[:task][:status].to_i
+    case status_num
+    when 0
+      next_status = 1
+    when 1
+      next_status = 2
+    when 2
+      next_status = 0
+    end
+    Task.where(id: params[:task][:id]).update(status: next_status)
+    redirect_to root_path
+  end
+
+  def select_index0
+    @user = current_user
+    @task = Task.new
+    @tasks = Task.where(user_id: @user.id, status: 0).page(params[:page]).per(20)
+    render :index
+  end
+
+  def select_index1
+    @user = current_user
+    @task = Task.new
+    @tasks = Task.where(user_id: @user.id, status: 1).page(params[:page]).per(20)
+    render :index
+  end
+
+  def select_index2
+    @user = current_user
+    @task = Task.new
+    @tasks = Task.where(user_id: @user.id, status: 2).page(params[:page]).per(20)
+    render :index
+  end
+
+  def done_destroy
+    Task.where(status: 2).destroy_all
+    flash[:success] = "Doneの削除完了"
     redirect_to root_path
   end
 
   private
   def task_params
-    params.require(:task).permit(:title, :author, :publisher, :review)
+    params.require(:task).permit(:task_name, :estimated_time, :status, :id)
   end
 
   def set_task

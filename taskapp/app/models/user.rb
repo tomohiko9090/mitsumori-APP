@@ -5,7 +5,7 @@ class User < ApplicationRecord
                 format:{with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i},
                 uniqueness: {case_sensitive: false}
     has_secure_password
-    # has_many :task
+    has_many :task
     # has_many :likes
     # has_many :like_books, through: :likes, source: :book
 end

@@ -1,23 +1,31 @@
-<table>
+<table class="table table-hover">
     <tr>
-        <th>タスク名</th>
-        <th>ユーザーid</th>
+        <th>id</th>
+        <th>タスク内容</th>
         <th>タスク進捗</th>
-        <th>見積もり時間</th>
-        <th>実績時間</th>
+        <%# <th>見積もり時間</th> %>
+        <%# <th>実績時間</th> %>
         <th>登録日時</th>
-        <th>変更日時</th>
+        <th></th>
+        <th></th>
     </tr>
     <% @tasks.each do |task| %>
     <tr>
+        <td><%= task.id %></td>
         <td><%= task.task_name %></td>
-        <td><%= task.user_id %></td>
-        <td><%= task.status %></td>
-        <%# link_to book.title, book_path(book) %>
-        <td><%= task.estimated_time %></td>
-        <td><%# "有り" if book.review.present? %></td>
-        <td><%= task.created_at %></td>
-        <td><%= task.updated_at %></td>
+        <td>
+            <%= form_with url: change_status_path, scope: :task do |f| %>
+                <%= f.hidden_field :id, value: task.id %>   
+                <%= f.hidden_field :status, value: task.status %>   
+                <%= f.submit ["未着手","実施中","完了"][task.status || 0], class: "btn btn-light" %>
+            <% end %>
+        </td>
+        <%# <td><%= task.estimated_time </td> %>
+        <%# <td><%= task.end_time </td> %>
+        <td><%= task.created_at.strftime('%Y/%m/%d %H:%M') %></td>
+        <td><%= link_to "編集", edit_task_path(task) %></td>
+        <td><%= link_to "削除", task_path(task), method: :delete, data:{confirm: "本当に削除しますか"} %></td>
     </tr>
     <% end %>
 </table>
+<%= paginate @tasks %>

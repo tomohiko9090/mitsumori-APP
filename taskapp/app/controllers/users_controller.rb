@@ -17,13 +17,12 @@ class UsersController < ApplicationController
 
     def create
         @user = User.new(user_params)
-        p user_params
         if @user.save 
           session[:user_id] = @user.id
-          flash[:success] = "登録したよん🎉ログインしよっさ！"
+          flash[:success] = "登録成功です"
           redirect_to tasks_path
         else
-          flash[:danger] = "ざんねん。\n登録できんかったわ🙅‍♂️"
+          flash[:danger] = "登録できませんでした"
           render :new
         end
       end

@@ -1,2 +1,16 @@
-<h3>タスク一覧</h3>
+<h3><%= @user.nickname %>さんのタスク一覧</h3>
+<%= form_with model: @task do |f| %>
+    <%= f.text_field :task_name %>
+    <%= f.submit "登録する" %>
+<% end %>
+<br>
+<%= link_to "全て", tasks_path %>
+<%= link_to "未着手", select_index0_path %>
+<%= link_to "実施中", select_index1_path %>
+<%= link_to "完了", select_index2_path %>
+<%= button_to '一括Done🗑', {controller: :tasks, action: :done_destroy}, {method: :delete, style: "float: right;", class: "btn btn-warning"}%>
+<br><br>
+
 <%= render "commons/tasks" %>
+
+

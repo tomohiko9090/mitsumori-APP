@@ -8,23 +8,25 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
   </head>
 
-  <body>
-    <h1>タスク見積もり能力向上アプリ「mitsumo」</h1>
+  <header>タスク見積もり能力向上アプリ「mitsumo」</header>
+  <body class="container">
+
     <p>
     <% if logged_in? %>
       <%= link_to "HOME", tasks_path %>
-      <%# link_to "みんなの蔵書", books_path %>
-      <%# link_to "お気に入り", likes_path %>
       <%= link_to "ログアウト", logout_path, method: :delete %>
     <% else %>
       <%= link_to "会員登録", signup_path %>
-      <%= link_to "ログイン", login_path %>
+      <%= link_to "ログイン", signin_path %>
     <% end %>
     </p>
 
     <%= render "commons/flash" %>
     <%= yield %>
   </body>
+  <footer>製作者：未来のワクワクさん</footer>
 </html>

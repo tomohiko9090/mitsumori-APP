@@ -30,3 +30,20 @@ th, td {
 th {
     background: #eee;
 }
+
+body {
+    margin: 0;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  header {
+    padding: 10px 10px;
+    background-color: #444;
+    color: #eeeeee;
+  }
+  footer {
+    margin-top: auto;
+    padding: 10px 0px;
+    background-color: #444;
+    color: #eee;
+  }

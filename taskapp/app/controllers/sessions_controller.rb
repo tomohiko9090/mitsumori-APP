@@ -8,9 +8,9 @@ class SessionsController < ApplicationController
   def create
     email = params[:session][:email].downcase 
     password = params[:session][:password] 
-    if login(email, password)
+    if signin(email, password)
       flash[:success] = "ログイン成功じゃけ"
-      redirect_to tasks_path
+      redirect_to root_path
     else
       flash.now[:danger] = "それじゃーログインできんねんな"
       render :new
@@ -20,11 +20,11 @@ class SessionsController < ApplicationController
   def destroy
     session[:user_id] = nil
     flash[:success] = "ログアウト。またおいでやす〜"
-    redirect_to login_url
+    redirect_to signin_url
   end
 
   private
-  def login(email, password)
+  def signin(email, password)
     @user = User.find_by(email: email)
     if @user && @user.authenticate(password)
       session[:user_id] = @user.id
