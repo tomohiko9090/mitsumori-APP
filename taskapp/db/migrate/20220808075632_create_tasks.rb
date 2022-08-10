@@ -6,7 +6,7 @@ class CreateTasks < ActiveRecord::Migration[6.1]
       t.integer :end_time
 
       t.string :task_name
-      t.integer :status
+      t.integer :status, default: 0
 
       t.timestamps
     end

@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
-  root to: "tasks#index"
+  # get :index, to: "tops#index"
+
+  root to: "tops#index"
 
   get "signup", to: "users#new"
   post "signup", to: "users#create"
+  get :ranking, to: "users#index"
 
   get "signin", to: "sessions#new"
   post "signin", to: "sessions#create"
@@ -16,6 +19,8 @@ Rails.application.routes.draw do
   get :select_index2, to: "tasks#select_index2"
 
   delete :done_destroy, to: "tasks#done_destroy"
+
+  get :measure, to: "timers#measure"
 
   resources :tasks
 end

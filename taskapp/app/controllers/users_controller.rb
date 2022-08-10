@@ -1,8 +1,10 @@
 class UsersController < ApplicationController
-    before_action :require_logged_in, only: [:show] #showアクションの前に、require_logged_inアクションを実行
+    before_action :require_logged_in, only: [:show]
     before_action :already_logged_in, only: [:new, :create]
+
+    # テンプレ表示メソッド
     def index
-        @user = User.new
+        @users = User.all #.order(:level)
     end
 
     def new
@@ -15,6 +17,7 @@ class UsersController < ApplicationController
         # render tasks_path
      end
 
+    # アクションメソッド
     def create
         @user = User.new(user_params)
         if @user.save 
@@ -27,8 +30,9 @@ class UsersController < ApplicationController
         end
       end
 
-      private
-      def user_params
-        params.require(:user).permit(:name, :email, :birth_date, :password, :password_confirmation)
-      end
+      
+    private
+    def user_params
+      params.require(:user).permit(:name, :email, :birth_date, :password, :password_confirmation, :nickname)
+    end
 end

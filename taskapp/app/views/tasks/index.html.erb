@@ -1,35 +1,46 @@
-<%= javascript_pack_tag 'hello_vue' %>
-
 <h3><%= @user.nickname %>さんのタスク一覧</h3>
+
 <%= form_with model: @task do |f| %>
-    <%= f.text_field :task_name %>
+<div class="d-flex" style="display:flex;">
+	<div>
+        <p><b>タスク内容</b></p> 
+        <p><%= f.text_field :task_name, class: "form-control input-number border-dark", style: "width:150px", placeholder: "ex.部屋の掃除"%></p>
+    </div>
+	<div>
+        <p><b>見積もり</b></p>
+        <p class="d-flex align-items-center"><%= f.number_field :estimated_time, value: 0, class: "form-control input-number border-dark", min: 1, max: 100,  style: "width:70px" %><span style="vertical-align:bottom">min</span>
+        <%# <input type="number" name="estimated_time" value="0" min="1" max="60" class="form-control input-number border-dark" style="width:70px">min</p> %>
+    </div>
+</div>
     <%= f.submit "登録する" %>
 <% end %>
+
 <br>
 <%= link_to "全て", tasks_path, class: "btn btn-primary"%><br><br>
 <%= link_to "未着手", select_index0_path , {style: "float: left;", class: "btn btn-warning"}%>　
 <%= link_to "実施中", select_index1_path , {class: "btn btn-warning"}%>　
 <%= link_to "完了", select_index2_path , {class: "btn btn-warning"}%>　
-<%= button_to '一括Done🗑', {controller: :tasks, action: :done_destroy}, {method: :delete, style: "float: right;", class: "btn btn-warning"}%>
+<%= button_to '完了タスク削除', {controller: :tasks, action: :done_destroy}, {method: :delete, style: "float: right;", class: "btn btn-warning"}%>
 <br><br>
-
-<ul class="tab-menu">
-    <li
-        v-for="tab in tabs" :key="tab.name"
-        @click="activeTab = tab.name"
-        :class="{active: activeTab === tab.name}"
-    >{{ tab.text }}</li>
-</ul>
-<div class="tab-content">
-    <div v-if="activeTab === 'tabs-1'">
-        <p>タブ1の内容</p>
+<div id="app">
+    <ul class="tab-menu">
+        <li
+            v-for="tab in tabs" :key="tab.name"
+            @click="activeTab = tab.name"
+            :class="{active: activeTab === tab.name}"
+        >{{ tab.text }}</li>
+    </ul>
+    <div class="tab-content">
+        <div v-if="activeTab === 'tabs-1'">
+            <p>タブ1の内容</p>
+        </div>
+        <div v-if="activeTab === 'tabs-2'">
+            <p>タブ2の内容</p>
+        </div>
+        <div v-if="activeTab === 'tabs-3'">
+            <p>タブ3の内容</p>
+        </div>
     </div>
-    <div v-if="activeTab === 'tabs-2'">
-        <p>タブ2の内容</p>
-    </div>
-    <div v-if="activeTab === 'tabs-3'">
-        <p>タブ3の内容</p>
-
 </div>
 <br>
 
