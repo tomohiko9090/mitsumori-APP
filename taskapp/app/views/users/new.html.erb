@@ -1,18 +1,24 @@
 <h3>会員登録</h3>
-<%= form_with(model: @user, url: signup_path) do |f| %>
+<%= form_with model: @user, url: signup_path do |f| %>
 
 <dl>
-    <dt>名前</dt>
-    <dd><%= f.text_field :name %></dd>
+    <dt>お名前</dt>
+    <dd><%= f.text_field :name %></dd><br>
+
     <dt>生年月日</dt>
-    <dd><%= f.date_field :birth_date %><%#= f.date_select :birth_date, use_month_numbers: true,start_year: 1930, end_year: (Time.now.year - 10), default: Date.new(1989, 1, 1) %>
-    </dd>
+    <dd><%= f.date_field :birth_date %><br>
+    
     <dt>E-mail</dt>
-    <dd><%= f.text_field :email %></dd>
+    <dd><%= f.text_field :email %></dd><br>
+
     <dt>パスワード</dt>
-    <dd><%= f.password_field :password %></dd>
+    <dd><%= f.password_field :password %></dd><br>
+
     <dt>パスワード（確認）</dt>
-    <dd><%= f.password_field :password_confirmation %></dd>
+    <dd><%= f.password_field :password_confirmation %></dd><br>
+
+    <dt>ニックネーム</dt>
+    <dd><%= f.text_field :nickname %></dd><br>
 </dl>
 <%= f.submit "会員登録" %>
 <% end %>

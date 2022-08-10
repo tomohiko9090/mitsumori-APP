@@ -20,7 +20,7 @@ class TasksController < ApplicationController
     @task = current_user.task.build(task_params)
     if @task.save
       flash[:success] = "登録できました"
-      redirect_to root_path
+      redirect_to tasks_path
     else
       flash.now[:danger] = "登録できませんでした"
       render :new
@@ -33,7 +33,7 @@ class TasksController < ApplicationController
   def update
     if @task.update(task_params)
       flash[:success] = "更新できました"
-      redirect_to root_path
+      redirect_to tasks_path
     else
       flash.now[:danger] = "更新できませんでした"
       render :edit
@@ -43,24 +43,33 @@ class TasksController < ApplicationController
   def destroy
     @task.destroy
     flash[:success] = "削除完了"
-    redirect_to root_path
+    redirect_to tasks_path
   end
 
   def change_status
     status_num = params[:task][:status].to_i
     case status_num
     when 0
+      page_open(params[:task][:id])
       next_status = 1
+      redirect_back(fallback_location: tasks_path)
     when 1
       next_status = 2
     when 2
       next_status = 0
     end
+
     Task.where(id: params[:task][:id]).update(status: next_status)
-    redirect_to root_path
+    redirect_back(fallback_location: tasks_path)
+  end
+
+  def page_open(id)
+    @task = Task.find(id)
+    render measure_path
   end
 
   def select_index0
+    @index = 0
     @user = current_user
     @task = Task.new
     @tasks = Task.where(user_id: @user.id, status: 0).page(params[:page]).per(20)
@@ -68,6 +77,7 @@ class TasksController < ApplicationController
   end
 
   def select_index1
+    @index = 1
     @user = current_user
     @task = Task.new
     @tasks = Task.where(user_id: @user.id, status: 1).page(params[:page]).per(20)
@@ -75,6 +85,7 @@ class TasksController < ApplicationController
   end
 
   def select_index2
+    @index = 2
     @user = current_user
     @task = Task.new
     @tasks = Task.where(user_id: @user.id, status: 2).page(params[:page]).per(20)
@@ -84,7 +95,7 @@ class TasksController < ApplicationController
   def done_destroy
     Task.where(status: 2).destroy_all
     flash[:success] = "Doneの削除完了"
-    redirect_to root_path
+    redirect_to tasks_path
   end
 
   private

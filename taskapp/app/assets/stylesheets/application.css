@@ -73,3 +73,9 @@ ul.tab-menu{
     border-radius: 6px;
     padding: 10px;
 }
+
+.timer {
+    font-weight: bold;
+    font-size: 1.6em;
+    color: #222;
+  }

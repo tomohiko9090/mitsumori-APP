@@ -1,0 +1,8 @@
+<h2>mitsumoランキング</h2>
+<p>見積もりLevelを競い合います</p>
+
+<% @users.each_with_index do |user, index| %>
+<p><%= index+1 %>位 Level:<%= user.level %> <%= user.nickname %></p>
+<% end %>
+
+

@@ -9,10 +9,7 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://unpkg.com/vue@next"></script>
-    <%# javascript_pack_tag 'main', 'data-turbolinks-track': 'reload', defer: true %>
-    <%# javascript_pack_tag 'main' %>
-    <%# stylesheet_pack_tag 'main' %>  
+    <script src="https://unpkg.com/vue@next"></script> 
     </head>
 
   <body>
@@ -26,6 +23,7 @@
     <% if logged_in? %>
       <%= link_to "HOME", tasks_path %>
       <%= link_to "ログアウト", logout_path, method: :delete %>
+      <%= link_to "mitsumoランキング", ranking_path %>
     <% else %>
       <%= link_to "会員登録", signup_path %>
       <%= link_to "ログイン", signin_path %>
@@ -39,5 +37,6 @@
   <footer>
       <div class="container">製作者：未来のワクワクさん</div>
   </footer>
+   <%= javascript_pack_tag 'main' %>
   </body>
 </html>
