@@ -87,9 +87,9 @@ const vm = app.mount("#app")
 
 let countdown = setInterval(function(){
     const now = new Date()  //今の日時
-    // const target = new Date(now.getFullYear(), now.getMonth() + 1, 0,'23','59','59') //ターゲット日時を取得
-    const target = new Date("2022/9/11 1:00:00")    
-    console.log(target)
+    const target = new Date("2022/9/11 1:00:00")   #処理を開始した時間
+    now - target #カウントアップ
+    // const target = new Date("2022/9/11 1:00:00")    
     const remainTime = target - now  //差分を取る（ミリ秒で返ってくる
 
     //指定の日時を過ぎていたら処理をしない
