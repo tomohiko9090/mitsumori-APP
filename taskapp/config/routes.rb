@@ -21,6 +21,8 @@ Rails.application.routes.draw do
   delete :done_destroy, to: "tasks#done_destroy"
 
   get :measure, to: "timers#measure"
+  post :stop, to: "timers#stop"
+  get :timer, to: "timers#timer"
 
   resources :tasks
 end

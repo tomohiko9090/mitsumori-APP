@@ -15,6 +15,18 @@
     <%= f.submit "登録する" %>
 <% end %>
 
+<%# <div id="countdownArea" class="countdown">
+    <b style="font-size:60px;">
+        <span id="countdown-min" class="stop_time"></span> :
+        <span id="countdown-sec"></span>
+    </b>
+</div> %>
+<%# <button type="button" class="btn btn-warning stop" onclick="stop_time_catch()">おわた!</button> %>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+
+
+
 <br>
 <%= link_to "全て", tasks_path, class: "btn btn-primary"%><br><br>
 <%= link_to "未着手", select_index0_path , {style: "float: left;", class: "btn btn-warning"}%>　
@@ -43,5 +55,6 @@
     </div>
 </div>
 <br>
+
 
 <%= render "commons/tasks" %>

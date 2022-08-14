@@ -1,20 +1,62 @@
-<h1><%# @task.task_name %></h1>
+<h1>「<%= @task.task_name %>」を終わらせろ！！</h1>
 
 <div class="timer" id="timer"></div>
 
 <div>
-
+    残り時間
 </div>
-<%# <form name="timer">
-    <input type="text" value="">分
-    <input type="text" value="">秒<br>
-    <input type="button" value="スタート" onclick="cntStart()">
-    <input type="button" value="ストップ" onclick="cntStop()">
-</form> %>
+
 
 <div id="countdownArea" class="countdown">
-    <span id="countdown-day"></span>日
-    <span id="countdown-hour"></span>時間
-    <span id="countdown-min"></span>分
-    <span id="countdown-sec"></span>秒
+    <b style="font-size:60px;">
+        <span id="countdown-min" class="stop_time"></span> :
+        <span id="countdown-sec"></span>
+    </b>
 </div>
+
+<% start_time = Time.now %>
+
+<%  %>
+
+<%= form_with url: stop_path, scope: :task do |f| %>
+    <%= f.hidden_field :id, value: @task.id %>  
+    <%= f.hidden_field :time, value: start_time %>  
+
+    <%= f.submit "Finish", class: "btn btn-warning" %>
+<% end %> 
+<%# <button type="button" class="btn btn-warning stop" onclick="stop_time_catch()">Finish</button> %>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+<script>
+const access_time = new Date()
+
+let time = '<%== JSON.dump(@task.estimated_time) %>'
+const min_time = Number(time) * 60 * 1000 //3分をミリ秒にしたもの
+
+console.log("チェックポイント1")
+function stop_time_catch(){
+
+    console.log("チェックポイント2")
+
+    $(function (){
+    let stop_time = document.getElementsByClassName('stop_time')[0];
+    console.log("チェックポイント3")
+    console.log(stop_time)
+
+    $.ajax({
+        url: '/timers/stop',  
+        type: 'POST',
+        processData: false,
+        // dataType: 'html',
+        // async: true,
+        data: {
+            stop: stop_time,
+        }
+    });
+    });
+}
+
+let stop = document.querySelector("#stop")
+</script>

@@ -7,6 +7,9 @@ class TasksController < ApplicationController
     @user = current_user
     @task = Task.new
     @tasks = Task.where(user_id: @user.id).order(:created_at).page(params[:page]).per(20)
+    if params[:task] != nil
+      @task_estimated = Task.find(params[:task][:id].to_i).estimated_time
+    end
   end
 
   def show
@@ -49,18 +52,26 @@ class TasksController < ApplicationController
   def change_status
     status_num = params[:task][:status].to_i
     case status_num
+    
     when 0
-      page_open(params[:task][:id])
       next_status = 1
-      redirect_back(fallback_location: tasks_path)
+      @user = current_user
+      @task = Task.find(params[:task][:id].to_i)
+      Task.where(id: params[:task][:id]).update(status: next_status)
+      render "timers/measure"
+      # redirect_back(fallback_location: tasks_path)
+      # render :index
+      # index
     when 1
       next_status = 2
+      Task.where(id: params[:task][:id]).update(status: next_status)
+      redirect_back(fallback_location: tasks_path)
     when 2
       next_status = 0
+      Task.where(id: params[:task][:id]).update(status: next_status)
+      redirect_back(fallback_location: tasks_path)
     end
 
-    Task.where(id: params[:task][:id]).update(status: next_status)
-    redirect_back(fallback_location: tasks_path)
   end
 
   def page_open(id)
