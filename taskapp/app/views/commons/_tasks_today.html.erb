@@ -1,0 +1,79 @@
+<div class="d-flex">
+    <h2>ToDo</h2>
+    <table class="table table-hover">
+        <tr>
+            <th></th>
+            <th>タスク進捗</th>
+            <th>タスク内容</th>
+            <th>見積もり時間</th>
+            <th>実績時間</th>
+            <th></th>
+            <th></th>
+        </tr>
+        <% @tasks_todo.each do |task| %>
+        <tr>
+            <td>
+                <%= form_with url: today_task_changed_path, scope: :task_today do |f| %>
+                    <%= f.hidden_field :id, value: task.id %>
+                    <%= f.hidden_field :action_date, value: task.action_date %>
+                    <%= f.submit "⎋", class: "btn btn-dark" %>
+                <% end %>
+            </td>
+            <td>
+                <%= form_with url: change_status_path, scope: :task do |f| %>
+                    <%= f.hidden_field :id, value: task.id %>   
+                    <%= f.hidden_field :status, value: task.status %>
+                    <%= f.submit ["作業開始", "実施中", "完了"][task.status || 0], class: "btn btn-dark" %>
+                <% end %>
+            </td>
+            <td><%= task.task_name %></td>
+            <td><%= task.estimated_time%></td> 
+            <td><%= task.actual_time%></td> 
+            <td><%= link_to "編集", edit_task_path(task) %></td>
+            <td><%= link_to "削除", task_path(task), method: :delete, data:{confirm: "本当に削除しますか"} %></td>
+        </tr>
+        <% end %>
+    </table>
+    <p>本日の総見積もり時間は、</p>
+    <% total_todays_estimated_time = 0 %>
+    <% @tasks_todo.map{|task| total_todays_estimated_time += task.estimated_time } %>
+    
+    <p><h3><b><%= total_todays_estimated_time/60 %>時間<%= total_todays_estimated_time%60 %>分</b></h3></p>
+
+    <br>
+
+
+
+
+    <h2>Done</h2>
+    <table class="table table-hover">
+        <tr>
+            <th>タスク進捗</th>
+            <th>タスク内容</th>
+            <th>見積もり時間</th>
+            <th>実績時間</th>
+            <th></th>
+            <th></th>
+        </tr>
+        <% @tasks_done.each do |task| %>
+        <tr>
+            <td>
+                <%= form_with url: change_status_path, scope: :task do |f| %>
+                    <%= f.hidden_field :id, value: task.id %>   
+                    <%= f.hidden_field :status, value: task.status %>
+                    <%= f.submit ["作業開始", "実施中", "完了"][task.status || 0], class: "btn btn-dark" %>
+                <% end %>
+            </td>
+            <td><%= task.task_name %></td>
+            <td><%= task.estimated_time%></td> 
+            <td><%= task.actual_time%></td> 
+            <td><%= link_to "編集", edit_task_path(task) %></td>
+            <td><%= link_to "削除", task_path(task), method: :delete, data:{confirm: "本当に削除しますか"} %></td>
+        </tr>
+        <% end %>
+    </table>
+    <% total_todays_actual_time = 0 %>
+    <% @tasks_todo.map{|task| total_todays_actual_time += task.actual_time } %>
+    <p>本日の稼働時間</p>
+    <p><h3><b><%= total_todays_actual_time/60 %>時間<b><%= total_todays_actual_time%60 %>分</h3></p>
+</div>

@@ -6,10 +6,9 @@ class TasksController < ApplicationController
   def index
     @user = current_user
     @task = Task.new
-    @tasks = Task.where(user_id: @user.id).order(:created_at).page(params[:page]).per(20)
-    if params[:task] != nil
-      @task_estimated = Task.find(params[:task][:id].to_i).estimated_time
-    end
+    @tasks = Task.where(user_id: @user.id).order(:status, :created_at).page(params[:page]).per(20)
+    @tasks_todo = Task.where(user_id: @user.id, status: 0, action_date: "2022/08/14").order(:created_at).page(params[:page]).per(20)
+    @tasks_done = Task.where(user_id: @user.id, status: 2, action_date: "2022/08/14").order(:created_at).page(params[:page]).per(20)
   end
 
   def show
@@ -74,34 +73,46 @@ class TasksController < ApplicationController
 
   end
 
-  def page_open(id)
-    @task = Task.find(id)
-    render measure_path
+  # def page_open(id)
+  #   @task = Task.find(id)
+  #   render measure_path
+  # end
+
+  def today_task_changed
+    task_id = params[:task_today][:id]
+    action_date = params[:task_today][:action_date]
+    if action_date == nil
+      Task.where(id: task_id).update(action_date: "2022/08/14")
+    else
+      Task.where(id: task_id).update(action_date: "")
+    end
+    redirect_to tasks_path
   end
 
-  def select_index0
-    @index = 0
-    @user = current_user
-    @task = Task.new
-    @tasks = Task.where(user_id: @user.id, status: 0).page(params[:page]).per(20)
-    render :index
-  end
 
-  def select_index1
-    @index = 1
-    @user = current_user
-    @task = Task.new
-    @tasks = Task.where(user_id: @user.id, status: 1).page(params[:page]).per(20)
-    render :index
-  end
+  # def select_index0
+  #   @index = 0
+  #   @user = current_user
+  #   @task = Task.new
+  #   @tasks = Task.where(user_id: @user.id, status: 0).page(params[:page]).per(20)
+  #   render :index
+  # end
 
-  def select_index2
-    @index = 2
-    @user = current_user
-    @task = Task.new
-    @tasks = Task.where(user_id: @user.id, status: 2).page(params[:page]).per(20)
-    render :index
-  end
+  # def select_index1
+  #   @index = 1
+  #   @user = current_user
+  #   @task = Task.new
+  #   @tasks = Task.where(user_id: @user.id, status: 1).page(params[:page]).per(20)
+  #   render :index
+  # end
+
+  # def select_index2
+  #   @index = 2
+  #   @user = current_user
+  #   @task = Task.new
+  #   @tasks = Task.where(user_id: @user.id, status: 2).page(params[:page]).per(20)
+  #   render :index
+  # end
 
   def done_destroy
     Task.where(status: 2).destroy_all

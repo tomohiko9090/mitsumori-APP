@@ -15,6 +15,24 @@
   <body>
   <header>
       <div class="container"><h1>タスク見積もり能力向上アプリ「mitsumo」</h1></div>
+        <nav>
+        <% if logged_in? %>
+          <%= link_to "HOME", tasks_path %>
+          <%= link_to "ログアウト", logout_path, method: :delete %>
+          <%= link_to "ランキング", ranking_path %>
+        <% else %>
+          <%= link_to "会員登録", signup_path %>
+          <%= link_to "ログイン", signin_path %>
+        <% end %>
+        <div class="animation start-home"></div>
+      </nav>
+      <ul>
+          <li><a data-text='CSS' href="#">CSS</a></li>
+          <li><a data-text="HTML" href="#">HTML</a></li>
+          <li><a data-text="Javascript" href="#">JavaScript</a></li>
+          <li><a data-text="About" href="#">About</a></li>
+      </ul>
+      <br /><br />
   </header>
 
   <main class="container">
@@ -23,7 +41,8 @@
     <% if logged_in? %>
       <%= link_to "HOME", tasks_path %>
       <%= link_to "ログアウト", logout_path, method: :delete %>
-      <%= link_to "mitsumoランキング", ranking_path %>
+      <%= link_to "ランキング", ranking_path %>
+      <%= link_to "プロフィール編集", ranking_path %>
     <% else %>
       <%= link_to "会員登録", signup_path %>
       <%= link_to "ログイン", signin_path %>

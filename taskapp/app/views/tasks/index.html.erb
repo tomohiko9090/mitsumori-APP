@@ -7,9 +7,11 @@
         <p><%= f.text_field :task_name, class: "form-control input-number border-dark", style: "width:150px", placeholder: "ex.部屋の掃除"%></p>
     </div>
 	<div>
-        <p><b>見積もり</b></p>
-        <p class="d-flex align-items-center"><%= f.number_field :estimated_time, value: 0, class: "form-control input-number border-dark", min: 1, max: 100,  style: "width:70px" %><span style="vertical-align:bottom">min</span>
-        <%# <input type="number" name="estimated_time" value="0" min="1" max="60" class="form-control input-number border-dark" style="width:70px">min</p> %>
+        <p><b>見積もり時間</b></p>
+        <div class="d-flex" style="display:flex;">
+            <div><%= f.number_field :estimated_time, value: 0, class: "form-control input-number border-dark", min: 1, max: 100,  style: "width:70px" %></div>
+            <div style="vertical-align: text-bottom">min</div>
+        </div>
     </div>
 </div>
     <%= f.submit "登録する" %>
@@ -25,14 +27,11 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
 
-
-
 <br>
-<%= link_to "全て", tasks_path, class: "btn btn-primary"%><br><br>
-<%= link_to "未着手", select_index0_path , {style: "float: left;", class: "btn btn-warning"}%>　
-<%= link_to "実施中", select_index1_path , {class: "btn btn-warning"}%>　
-<%= link_to "完了", select_index2_path , {class: "btn btn-warning"}%>　
-<%= button_to '完了タスク削除', {controller: :tasks, action: :done_destroy}, {method: :delete, style: "float: right;", class: "btn btn-warning"}%>
+<%# link_to "全て", tasks_path, class: "btn btn-primary"%>
+<%# link_to "未着手", select_index0_path , {style: "float: left;", class: "btn btn-warning"}%>　
+<%# link_to "実施中", select_index1_path , {class: "btn btn-warning"}%>　
+<%# link_to "完了", select_index2_path , {class: "btn btn-warning"}%>　
 <br><br>
 <div id="app">
     <ul class="tab-menu">
@@ -44,10 +43,10 @@
     </ul>
     <div class="tab-content">
         <div v-if="activeTab === 'tabs-1'">
-            <p>タブ1の内容</p>
+            <p><%= render "commons/tasks" %></p>
         </div>
         <div v-if="activeTab === 'tabs-2'">
-            <p>タブ2の内容</p>
+            <p><%= render "commons/tasks_today" %></p>
         </div>
         <div v-if="activeTab === 'tabs-3'">
             <p>タブ3の内容</p>
@@ -56,5 +55,5 @@
 </div>
 <br>
 
+<%= button_to '完了タスク削除', {controller: :tasks, action: :done_destroy}, {method: :delete, style: "float: right;", class: "btn btn-warning"}%>
 
-<%= render "commons/tasks" %>

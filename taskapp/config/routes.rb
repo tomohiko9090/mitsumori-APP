@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  # get :index, to: "tops#index"
-
   root to: "tops#index"
 
   get "signup", to: "users#new"
@@ -14,15 +12,17 @@ Rails.application.routes.draw do
 
   post :change_status, to: "tasks#change_status"
 
-  get :select_index0, to: "tasks#select_index0"
-  get :select_index1, to: "tasks#select_index1"
-  get :select_index2, to: "tasks#select_index2"
+  # get :select_index0, to: "tasks#select_index0"
+  # get :select_index1, to: "tasks#select_index1"
+  # get :select_index2, to: "tasks#select_index2"
 
   delete :done_destroy, to: "tasks#done_destroy"
 
   get :measure, to: "timers#measure"
   post :stop, to: "timers#stop"
   get :timer, to: "timers#timer"
+
+  post :today_task_changed, to: "tasks#today_task_changed"
 
   resources :tasks
 end

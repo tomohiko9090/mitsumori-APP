@@ -49,6 +49,9 @@ footer {
     color: #eee;
 }
   
+
+
+
 /* 以下タブの装飾 */
 ul.tab-menu{
     display: flex;
@@ -80,3 +83,135 @@ ul.tab-menu{
     color: #222;
   }
 
+
+/* 以下、navbar */
+nav {
+    margin: 27px auto 0;
+  
+    position: relative;
+    width: 590px;
+    height: 50px;
+    background-color: #34495e;
+    border-radius: 8px;
+    font-size: 0;
+  }
+  nav a {
+    line-height: 50px;
+    height: 100%;
+    font-size: 15px;
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+    text-decoration: none;
+    text-transform: uppercase;
+    text-align: center;
+    color: white;
+    cursor: pointer;
+  }
+  nav .animation {
+    position: absolute;
+    height: 100%;
+    top: 0;
+    z-index: 0;
+    transition: all .5s ease 0s;
+    border-radius: 8px;
+  }
+  a:nth-child(1) {
+    width: 100px;
+  }
+  a:nth-child(2) {
+    width: 110px;
+  }
+  a:nth-child(3) {
+    width: 100px;
+  }
+  a:nth-child(4) {
+    width: 160px;
+  }
+  a:nth-child(5) {
+    width: 120px;
+  }
+  nav .start-home, a:nth-child(1):hover~.animation {
+    width: 100px;
+    left: 0;
+    background-color: #1abc9c;
+  }
+  nav .start-about, a:nth-child(2):hover~.animation {
+    width: 110px;
+    left: 100px;
+    background-color: #e74c3c;
+  }
+  nav .start-blog, a:nth-child(3):hover~.animation {
+    width: 100px;
+    left: 210px;
+    background-color: #3498db;
+  }
+  nav .start-portefolio, a:nth-child(4):hover~.animation {
+    width: 160px;
+    left: 310px;
+    background-color: #9b59b6;
+  }
+  nav .start-contact, a:nth-child(5):hover~.animation {
+    width: 120px;
+    left: 470px;
+    background-color: #e67e22;
+  }
+/*   
+  body {
+    font-size: 12px;
+    font-family: sans-serif;
+    background: #2c3e50;
+  }
+  h1 {
+    text-align: center;
+    margin: 40px 0 40px;
+    text-align: center;
+    font-size: 30px;
+    color: #ecf0f1;
+    text-shadow: 2px 2px 4px #000000;
+    font-family: 'Cherry Swash', cursive;
+  }
+  
+  p {
+      position: absolute;
+      bottom: 20px;
+      width: 100%;
+      text-align: center;
+      color: #ecf0f1;
+      font-family: 'Cherry Swash',cursive;
+      font-size: 16px;
+  }
+  
+  span {
+      color: #2BD6B4;
+  } */
+
+
+  @font-face {
+    font-family: 'Roboto Condensed';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Roboto Condensed Regular'), local('RobotoCondensed-Regular'), url(http://themes.googleusercontent.com/static/fonts/robotocondensed/v7/Zd2E9abXLFGSr9G3YK2MsFzqCfRpIA3W6ypxnPISCPA.woff) format('woff');
+  }
+  
+  html{ height:100%; font-family: 'Roboto Condensed'; }
+  /* body{ min-height:100%;  background-image: -webkit-radial-gradient(top, circle cover, #252233 0%, #252233 80%);
+   background-image: -moz-radial-gradient(top, circle cover, #3c3b52 0%, #252233 80%);
+   background-image: -o-radial-gradient(top, circle cover, #3c3b52 0%, #252233 80%);
+   background-image: radial-gradient(top, circle cover, #3c3b52 0%, #252233 80%); }                                              */
+  
+  *{ margin:0; padding:0; }
+  
+  /* body{ text-align:center; padding:20px 0; } */
+  
+  h1{ font-size:1.8em; color:#fff; margin-bottom:50px; letter-spacing:-1px; text-transform:capitalize; text-shadow:0 2px 2px rgba(0,0,0,0.6); }
+  
+  ul{ background-color:rgba(0,0,0,0.4); border-bottom:1px solid rgba(255,255,255,0.25); box-shadow:0 0 8px rgba(0,0,0,0.4) inset; border-radius:16px; margin:0; padding:0 30px; }
+  ul{ display:inline-block; text-align:center; height:50px; overflow:hidden; }
+  ul li a{ letter-spacing:-1px; text-decoration:none; text-transform:uppercase; color:#FFF; }
+  ul li{ float:left; height:100%; list-style:none; margin:0 30px; }
+  ul li *{ display:inline-block; font-size:1.3em; line-height:50px; }
+  ul li a{ margin-top:-50px; transition:0.3s cubic-bezier(0.1, 0.1, 0.5, 1.4); }
+  ul li a:hover{ margin-top:0; }
+  ul li a:before{ content:attr(data-text); display:block; color:#CDF745; }
+   color:#CDF745; }

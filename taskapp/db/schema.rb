@@ -18,15 +18,16 @@ ActiveRecord::Schema.define(version: 2022_08_08_075632) do
   create_table "tasks", force: :cascade do |t|
     t.integer "user_id"
     t.integer "estimated_time"
-    t.integer "end_time"
+    t.integer "actual_time"
     t.string "task_name"
-    t.integer "status"
+    t.integer "status", default: 0
+    t.date "action_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
-    t.integer "level"
+    t.integer "level", default: 1
     t.date "birth_date"
     t.string "name"
     t.string "nickname"
