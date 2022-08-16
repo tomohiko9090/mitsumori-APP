@@ -1,41 +1,19 @@
-<h3 style="text-align: leftx"><%= @user.nickname %>さん、こんにちは👋</h3>
-<br>
-<%= form_with model: @task do |f| %>
-<div class="d-flex" style="display:flex;">
-	<div>
-        <p><b>タスク内容</b></p> 
-        <p><%= f.text_field :task_name, class: "form-control input-number border-dark", style: "width:200px", placeholder: "ex.部屋の掃除"%></p>
-    </div>
-	<div>
-        <p><b>見積もり</b></p>
-        <div class="d-flex" style="display:flex;">
-            <div><%= f.number_field :estimated_time, value: 0, class: "form-control input-number border-dark", min: 1, max: 100,  style: "width:70px" %></div>
-            <div style="vertical-align: text-bottom">min</div>
-        </div>
-    </div>
-</div>
-<div>
-    <div class="form-check">
-      <%= f.label "本日のタスク", class: "form-check-label", for: "flexRadioDefault1" %>
-      <%= f.check_box :check_box, class: "form-check-input", value: "today" %>
-      <%# <input class=form-check-input type="radio" name="table_type" value="today"> %>
-      <%# <label class="form-check-label" for="flexRadioDefault1"> %>
-        <%# 本日のタスク
-      </label> %>
-    </div>
-</div>
-<div>
-    <%= f.submit "登録する", class: "bubbly-button" %>
-</div>
-<% end %>
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+var animateButton = function(e) {
 
-<br>
-<%# link_to "全て", tasks_path, class: "btn btn-primary"%>
-<%# link_to "未着手", select_index0_path , {style: "float: left;", class: "btn btn-warning"}%>　
-<%# link_to "実施中", select_index1_path , {class: "btn btn-warning"}%>　
-<%# link_to "完了", select_index2_path , {class: "btn btn-warning"}%>　
-<br><br>
+  e.preventDefault;
+  //reset animation
+  e.target.classList.remove('animate');
+  
+  e.target.classList.add('animate');
+  setTimeout(function(){
+    e.target.classList.remove('animate');
+  },700);
+};
+
+var bubblyButtons = document.getElementsByClassName("bubbly-button");
+</script>
+
 <div id="app">
     <ul class="tab-menu">
         <li
@@ -46,16 +24,46 @@
     </ul>
     <div class="tab-content">
         <div v-if="activeTab === 'tabs-1'">
-            <p><%= render "commons/tasks" %></p>
-        </div>
-        <div v-if="activeTab === 'tabs-2'">
             <p><%= render "commons/tasks_today" %></p>
         </div>
+        <div v-if="activeTab === 'tabs-2'">
+            <p><%= render "commons/tasks_future" %></p>
+        </div>
         <div v-if="activeTab === 'tabs-3'">
+            <p><%= render "commons/tasks_past" %></p>
         </div>
     </div>
 </div>
 <br>
 
-<%= button_to '完了タスク削除', {controller: :tasks, action: :done_destroy}, {method: :delete, style: "float: right;", class: "btn btn-warning"}%>
+<%
+if session[:tab]
+    if session[:tab] == 1
+        tab = 'tabs-1'
+    elsif session[:tab] == 2
+        tab = 'tabs-2'
+    elsif session[:tab] == 3
+        tab = 'tabs-3'
+    end
+else
+    tab = 'tabs-1'
+end
+%>
 
+
+<script>
+const app = Vue.createApp({
+  data(){
+      return {
+          activeTab: '<%= tab %>',
+          tabs: [
+              {name:'tabs-1', text: '本日のタスク'},
+              {name:'tabs-2', text: '今後のタスク'},
+              {name:'tabs-3', text: '過去のタスク'},
+          ],
+      }
+  },
+})
+const vm = app.mount("#app")
+</script>
+<%# button_to '完了タスク削除', {controller: :tasks, action: :done_destroy}, {method: :delete, style: "float: right;", class: "btn btn-warning"}%>

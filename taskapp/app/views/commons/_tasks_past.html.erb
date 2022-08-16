@@ -3,33 +3,49 @@
         <th></th>
         <th>タスク進捗</th>
         <th>タスク内容</th>
-        <th>見積もり時間</th>
-        <th>実績時間</th>
+        <th>見積もり時間(min)</th>
+        <th>実働時間(min)</th>
+        <th>誤差</th>
         <th></th>
         <th></th>
     </tr>
-    <% @tasks.each do |task| %>
+    <% @tasks_past.each do |task| %>
     <tr>
         <td>
             <%= form_with url: today_task_changed_path, scope: :task_today do |f| %>
                 <%= f.hidden_field :id, value: task.id %>
                 <%= f.hidden_field :action_date, value: task.action_date %>
-                <%= f.submit "今日やる", class: "btn btn-dark" %>
+                <% if task.action_date == nil %>
+                    <%= f.submit "本日のタスクに追加", class: "btn btn-dark" %>
+                <% else %>
+                    <%= "#{task.action_date}のタスク" %>
+                <% end %>
             <% end %>
         </td>
         <td>
             <%= form_with url: change_status_path, scope: :task do |f| %>
                 <%= f.hidden_field :id, value: task.id %>   
                 <%= f.hidden_field :status, value: task.status %>
-                <%= f.submit ["作業開始", "実施中", "完了"][task.status || 0], class: "btn btn-dark" %>
+                <%= f.submit ["作業開始", "実働中", "完了"][task.status || 0], class: "btn btn-dark" %>
             <% end %>
         </td>
         <td><%= task.task_name %></td>
         <td><%= task.estimated_time%></td> 
         <td><%= task.actual_time%></td> 
+        <td>
+            <% error_time = task.actual_time - task.estimated_time %>
+            <% if error_time <= 0 %>
+                <% text = "#{error_time}min" %>
+                <% color = "green" %>
+            <% else %>
+                <% text = "+#{error_time}min" %>
+                <% color = "red" %>
+            <% end %>
+            <span style="color:<%= color %>"><b><%= text %></b></span>
+        </td> 
         <td><%= link_to "編集", edit_task_path(task) %></td>
         <td><%= link_to "削除", task_path(task), method: :delete, data:{confirm: "本当に削除しますか"} %></td>
     </tr>
     <% end %>
 </table>
-<%= paginate @tasks %>
+<%# paginate @tasks_past %>

@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     password = params[:session][:password] 
     if signin(email, password)
       flash[:success] = "ログインしました。"
-      redirect_to tasks_path
+      redirect_to mypage_path
     else
       flash.now[:danger] = "メールアドレスまたは、パスワードが違います。"
       render :new
@@ -20,7 +20,7 @@ class SessionsController < ApplicationController
   def destroy
     session[:user_id] = nil
     flash[:success] = "ログアウトしました。"
-    redirect_to signin_url
+    redirect_to root_path
   end
 
   private

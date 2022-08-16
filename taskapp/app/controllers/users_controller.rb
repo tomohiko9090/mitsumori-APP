@@ -13,9 +13,12 @@ class UsersController < ApplicationController
 
     def show
         @user = current_user
-        # @tasks = current_user.tasks.all
-        # render tasks_path
-     end
+    end
+
+    def edit
+      @user = current_user
+    end
+
 
     # アクションメソッド
     def create
@@ -28,9 +31,19 @@ class UsersController < ApplicationController
           flash[:danger] = "登録できませんでした"
           render :new
         end
+    end
+    
+    def update
+      @user = User.find(params[:user][:id])
+      if @user.update(user_params)
+        flash[:success] = "更新できました"
+        redirect_to tasks_path
+      else
+        flash.now[:danger] = "更新できませんでした"
+        render :edit
       end
+    end
 
-      
     private
     def user_params
       params.require(:user).permit(:name, :email, :birth_date, :password, :password_confirmation, :nickname)

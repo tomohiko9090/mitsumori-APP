@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2022_08_08_075632) do
   create_table "tasks", force: :cascade do |t|
     t.integer "user_id"
     t.integer "estimated_time"
-    t.integer "actual_time"
+    t.integer "actual_time", default: 0
     t.string "task_name"
     t.integer "status", default: 0
     t.date "action_date"

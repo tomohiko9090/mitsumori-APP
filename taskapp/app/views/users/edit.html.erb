@@ -1,0 +1,20 @@
+<div class="login-page">
+    <div class="form">
+        <%= form_with model: @user, url: "/update/:id" do |f| %>
+            <%= f.hidden_field :id, value: @user.id %>
+
+            <%= f.text_field :name, placeholder: "お名前", value: @user.name %> 
+
+            <%= f.date_field :birth_date, placeholder: "誕生日", value: @user.birth_date %> 
+
+            <%= f.text_field :email, placeholder: "メールアドレス", value: @user.email %> 
+
+            <%= f.password_field :password, placeholder: "パスワード" %> 
+
+            <%= f.password_field :password_confirmation, placeholder: "パスワード（確認）" %> 
+
+            <%= f.text_field :nickname, placeholder: "ニックネーム", value: @user.nickname %> 
+            <button>update</button>
+        <% end %>
+    </div>
+</div>

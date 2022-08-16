@@ -3,16 +3,25 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   before_action :correct_user, only: [:edit, :update, :destroy]
 
+  def mypage
+    @user = current_user
+  end
+
   def index
     @user = current_user
     @task = Task.new
-    @tasks = Task.where(user_id: @user.id).order(:status, :created_at).page(params[:page]).per(10)
+    @tasks_future = Task.where(user_id: @user.id, action_date: nil).order(:status, :created_at)
+    @tasks_past = Task.where(user_id: @user.id).where.not(action_date: [nil, "2022/08/14"]).order(:status, :created_at)
+    # @tasks_past = Task.where(user_id: @user.id).where.not(action_date: [nil, "2022/08/14"]).order(:status, :created_at).page(params[:page]).per(10)
     @tasks_todo = Task.where(user_id: @user.id, status: 0, action_date: "2022/08/14").order(:created_at)
     @tasks_done = Task.where(user_id: @user.id, status: 2, action_date: "2022/08/14").order(:created_at)
   end
 
   def show
+
   end
+
+  
 
   def new
     @task = Task.new
@@ -22,6 +31,7 @@ class TasksController < ApplicationController
     @task = current_user.task.build(task_params)
     if @task.save
       flash[:success] = "タスクを追加しました"
+      session[:tab] = 2
       redirect_to tasks_path
     else
       flash.now[:danger] = "登録できませんでした"
@@ -53,7 +63,7 @@ class TasksController < ApplicationController
     case status_num
     
     when 0
-      next_status = 1
+      next_status = 2
       @user = current_user
       @task = Task.find(params[:task][:id].to_i)
       Task.where(id: params[:task][:id]).update(status: next_status)
@@ -61,10 +71,10 @@ class TasksController < ApplicationController
       # redirect_back(fallback_location: tasks_path)
       # render :index
       # index
-    when 1
-      next_status = 2
-      Task.where(id: params[:task][:id]).update(status: next_status)
-      redirect_back(fallback_location: tasks_path)
+    # when 1
+    #   next_status = 2
+    #   Task.where(id: params[:task][:id]).update(status: next_status)
+    #   redirect_back(fallback_location: tasks_path)
     when 2
       next_status = 0
       Task.where(id: params[:task][:id]).update(status: next_status)
@@ -75,38 +85,15 @@ class TasksController < ApplicationController
   def today_task_changed
     task_id = params[:task_today][:id]
     action_date = params[:task_today][:action_date]
-    if action_date == nil
+    if action_date == ""
       Task.where(id: task_id).update(action_date: "2022/08/14")
+      session[:tab] = 2
     else
       Task.where(id: task_id).update(action_date: "")
+      session[:tab] = 1
     end
     redirect_to tasks_path
   end
-
-
-  # def select_index0
-  #   @index = 0
-  #   @user = current_user
-  #   @task = Task.new
-  #   @tasks = Task.where(user_id: @user.id, status: 0).page(params[:page]).per(20)
-  #   render :index
-  # end
-
-  # def select_index1
-  #   @index = 1
-  #   @user = current_user
-  #   @task = Task.new
-  #   @tasks = Task.where(user_id: @user.id, status: 1).page(params[:page]).per(20)
-  #   render :index
-  # end
-
-  # def select_index2
-  #   @index = 2
-  #   @user = current_user
-  #   @task = Task.new
-  #   @tasks = Task.where(user_id: @user.id, status: 2).page(params[:page]).per(20)
-  #   render :index
-  # end
 
   def done_destroy
     Task.where(status: 2).destroy_all

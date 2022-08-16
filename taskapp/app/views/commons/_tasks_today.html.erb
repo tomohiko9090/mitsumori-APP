@@ -1,45 +1,78 @@
+<div class="fadeIn">
+    <img src="/assets/palette.png" width="450" height="400">
+    <div class="balloon1-left">
+        <h4>
+            <p>
+            タスク完了にかかる時間は、
+            <% total_todays_estimated_time = 0 %>
+            <% @tasks_todo.map{|task| total_todays_estimated_time += task.estimated_time } %>
+            <b><%= total_todays_estimated_time/60 %>時間<%= total_todays_estimated_time%60 %>分</b>です。
+            </p>
+            <p>
+                <% past_total_estimated = Task.where(user_id: @user.id).where.not(action_date: [nil, "2022/08/14"]).sum(:actual_time) %>
+                <% s = Task.where(user_id: @user.id).where.not(action_date: [nil, "2022/08/14"]).group(:action_date).size.length %>
+                <% if s == 0 %>
+                        <% text0 = "" %>
+                        <% text1 = "" %>
+                        <% text2 = "現在、過去のタスクデータはありません。" %>
+                        <% color = "black" %>
+                <% else %>
+                    <% past_total_average_estimated_time = past_total_estimated/s %>
+                    <% rest_min = past_total_average_estimated_time - total_todays_estimated_time  %>
+                    <% if rest_min >= 0 %>
+                        <% text0 = "過去の傾向から、" %>
+                        <% text1 = "#{rest_min/60}時間#{rest_min%60}分" %>
+                        <% text2 = "時間が余るでしょう。" %>
+                        <% color = "orange" %>
+                    <% else %>
+                        <% text0 = "過去の傾向から、本日のTodoは" %>
+                        <% text1 = "#{-rest_min/60}時間#{-rest_min%60}分オーバー" %>
+                        <% text2 = "することが予想されます。" %>
+                        <% color = "red" %>
+                    <% end %>
+                <% end %>
+                    <span><%= text0 %></span>
+                    <span style="color:<%= color %>"><b><%= text1 %></b></span>
+                    <span><%= text2 %></span>
+            </p>
+        </h4>
+    </div>
+</div>
+
 <div class="d-flex">
     <h2>ToDo</h2>
     <table class="table table-hover">
         <tr>
-            <th></th>
             <th>タスク進捗</th>
             <th>タスク内容</th>
-            <th>見積もり時間</th>
-            <th>実績時間</th>
+            <th>見積もり時間(min)</th>
+            <th></th>
             <th></th>
             <th></th>
         </tr>
         <% @tasks_todo.each do |task| %>
         <tr>
             <td>
-                <%= form_with url: today_task_changed_path, scope: :task_today do |f| %>
-                    <%= f.hidden_field :id, value: task.id %>
-                    <%= f.hidden_field :action_date, value: task.action_date %>
-                    <%= f.submit "⎋", class: "btn btn-dark" %>
-                <% end %>
-            </td>
-            <td>
                 <%= form_with url: change_status_path, scope: :task do |f| %>
                     <%= f.hidden_field :id, value: task.id %>   
                     <%= f.hidden_field :status, value: task.status %>
-                    <%= f.submit ["作業開始", "実施中", "完了"][task.status || 0], class: "btn btn-dark" %>
+                    <%= f.submit ["作業開始!", "実働中", "完了"][task.status || 0], class: "btn btn-success" %>
                 <% end %>
             </td>
-            <td><%= task.task_name %></td>
+            <td><b><%= task.task_name %></b></td>
             <td><%= task.estimated_time%></td> 
-            <td><%= task.actual_time%></td> 
+            <td>
+                <%= form_with url: today_task_changed_path, scope: :task_today do |f| %>
+                    <%= f.hidden_field :id, value: task.id %>
+                    <%= f.hidden_field :action_date, value: task.action_date %>
+                    <%= f.submit "今後のタスクに戻す", class: "btn btn-dark" %>
+                <% end %>
+            </td>
             <td><%= link_to "編集", edit_task_path(task) %></td>
             <td><%= link_to "削除", task_path(task), method: :delete, data:{confirm: "本当に削除しますか"} %></td>
         </tr>
         <% end %>
     </table>
-    <p>本日の総見積もり時間は、</p>
-    <% total_todays_estimated_time = 0 %>
-    <% @tasks_todo.map{|task| total_todays_estimated_time += task.estimated_time } %>
-    
-    <p><h3><b><%= total_todays_estimated_time/60 %>時間<%= total_todays_estimated_time%60 %>分</b></h3></p>
-
     <br>
 
 
@@ -51,7 +84,8 @@
             <th>タスク進捗</th>
             <th>タスク内容</th>
             <th>見積もり時間</th>
-            <th>実績時間</th>
+            <th>実働時間</th>
+            <th>誤差</th>
             <th></th>
             <th></th>
         </tr>
@@ -67,13 +101,26 @@
             <td><%= task.task_name %></td>
             <td><%= task.estimated_time%></td> 
             <td><%= task.actual_time%></td> 
+            <td>
+                <% error_time = task.actual_time - task.estimated_time %>
+                <% if error_time <= 0 %>
+                    <% text = "#{error_time}min" %>
+                    <% color = "green" %>
+                <% else %>
+                    <% text = "+#{error_time}min" %>
+                    <% color = "red" %>
+                <% end %>
+                <span style="color:<%= color %>"><b><%= text %></b></span>
+            </td> 
             <td><%= link_to "編集", edit_task_path(task) %></td>
             <td><%= link_to "削除", task_path(task), method: :delete, data:{confirm: "本当に削除しますか"} %></td>
         </tr>
         <% end %>
     </table>
-    <% total_todays_actual_time = 0 %>
-    <% @tasks_todo.map{|task| total_todays_actual_time += task.actual_time } %>
-    <p>本日の稼働時間</p>
-    <p><h3><b><%= total_todays_actual_time/60 %>時間<b><%= total_todays_actual_time%60 %>分</h3></p>
+    <%# total_todays_actual_time = 0 %>
+    <%# @tasks_todo.map{|task| total_todays_actual_time += task.actual_time } %>
+    <%# <p>本日の稼働時間</p> %>
+    <%#<p><h3><b><%= total_todays_actual_time/60 %>
+    <%#時間<b><%= total_todays_actual_time%60 %>
+    <%# 分</h3></p> %>
 </div>

@@ -1,0 +1,17 @@
+<div class="box fadeIn">
+    <% past_total_estimated = Task.where(user_id: @user.id).where.not(action_date: [nil, "2022/08/14"]).sum(:actual_time) %>
+    <% s = Task.where(user_id: @user.id).where.not(action_date: [nil, "2022/08/14"]).group(:action_date).size.length %>
+
+    <img src="/assets/absorbed.png" width="500" height="400">
+    <div class="balloon1-left">
+        <h3><%= @user.nickname %>さんの平均実働時間は、</h3>
+        <h3><b><%= past_total_estimated/s/60 %>時間<%= past_total_estimated/s%60 %>分</b>です。</h3>
+    </div>
+</div>
+
+<%# time = Time.now これは本番時に当日の日時を実装する 実装%>
+<%= area_chart Task.where(user_id: @user.id).where.not(action_date: [nil, "2022/08/14"]).group(:action_date).order(:action_date).sum(:actual_time), colors: ["#76B852"], ytitle: "実働時間(min)", label: "実績時間(min)" %>
+
+<div style="text-align:center">
+    <%= link_to :タスク一覧へ, tasks_path, class: "bubbly-button" %>
+</div>

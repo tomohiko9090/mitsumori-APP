@@ -5,15 +5,16 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://unpkg.com/vue@next"></script> 
+    <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
+
     </head>
 
   <header>
-    <div class="header"><h2 style="text-align:center; color:white"><b>タスクMITSUMOる？</b></h2></div>
+    <div class="header"><h2 style="text-align:center; color:white"><b>mitsumori ❖</b></h2></div>
   <input type="checkbox" class="openSidebarMenu" id="openSidebarMenu">
   <label for="openSidebarMenu" class="sidebarIconToggle">
     <div class="spinner diagonal part-1"></div>
@@ -24,9 +25,10 @@
   <div id="sidebarMenu">
     <ul class="sidebarMenuInner">
       <% if logged_in? %>
+        <li><%= link_to "マイページ", mypage_path %></li>
         <li><%= link_to "タスク一覧", tasks_path %></li>
         <li><%= link_to "ランキング", ranking_path %></li>
-        <li><%= link_to "プロフィール編集", ranking_path %></li>
+        <li><%= link_to "プロフィール編集", edit_path %></li>
         <li><%= link_to "ログアウト", logout_path, method: :delete %></li>
       <% else %>
         <li><%= link_to "トップ", "/" %></li>
@@ -51,5 +53,6 @@
       <div class="container">製作者：未来のワクワクさん</div>
   </footer>
   <%= javascript_pack_tag 'main' %>
+
   </body>
 </html>

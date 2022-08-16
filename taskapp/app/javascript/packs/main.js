@@ -1,16 +1,3 @@
-const app = Vue.createApp({
-  data(){
-      return {
-          activeTab: 'tabs-1',
-          tabs: [
-              {name:'tabs-1', text: '全タスク'},
-              {name:'tabs-2', text: '本日のタスク'},
-              {name:'tabs-3', text: '思考タスク'},
-          ],
-      }
-  },
-})
-const vm = app.mount("#app")
 
 
 let countdown = setInterval(function(){
@@ -42,19 +29,6 @@ let countdown = setInterval(function(){
 
 }, 1000)    //1秒間に1度処理
 
-var animateButton = function(e) {
-
-  e.preventDefault;
-  //reset animation
-  e.target.classList.remove('animate');
-  
-  e.target.classList.add('animate');
-  setTimeout(function(){
-    e.target.classList.remove('animate');
-  },700);
-};
-
-var bubblyButtons = document.getElementsByClassName("bubbly-button");
 
 for (var i = 0; i < bubblyButtons.length; i++) {
   bubblyButtons[i].addEventListener('click', animateButton, false);
