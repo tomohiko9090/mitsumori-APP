@@ -6,9 +6,9 @@ class TasksController < ApplicationController
   def index
     @user = current_user
     @task = Task.new
-    @tasks = Task.where(user_id: @user.id).order(:status, :created_at).page(params[:page]).per(20)
-    @tasks_todo = Task.where(user_id: @user.id, status: 0, action_date: "2022/08/14").order(:created_at).page(params[:page]).per(20)
-    @tasks_done = Task.where(user_id: @user.id, status: 2, action_date: "2022/08/14").order(:created_at).page(params[:page]).per(20)
+    @tasks = Task.where(user_id: @user.id).order(:status, :created_at).page(params[:page]).per(10)
+    @tasks_todo = Task.where(user_id: @user.id, status: 0, action_date: "2022/08/14").order(:created_at)
+    @tasks_done = Task.where(user_id: @user.id, status: 2, action_date: "2022/08/14").order(:created_at)
   end
 
   def show
@@ -21,7 +21,7 @@ class TasksController < ApplicationController
   def create
     @task = current_user.task.build(task_params)
     if @task.save
-      flash[:success] = "登録できました"
+      flash[:success] = "タスクを追加しました"
       redirect_to tasks_path
     else
       flash.now[:danger] = "登録できませんでした"
@@ -70,13 +70,7 @@ class TasksController < ApplicationController
       Task.where(id: params[:task][:id]).update(status: next_status)
       redirect_back(fallback_location: tasks_path)
     end
-
   end
-
-  # def page_open(id)
-  #   @task = Task.find(id)
-  #   render measure_path
-  # end
 
   def today_task_changed
     task_id = params[:task_today][:id]

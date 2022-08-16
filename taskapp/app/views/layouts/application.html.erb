@@ -12,43 +12,37 @@
     <script src="https://unpkg.com/vue@next"></script> 
     </head>
 
-  <body>
   <header>
-      <div class="container"><h1>タスク見積もり能力向上アプリ「mitsumo」</h1></div>
-        <nav>
-        <% if logged_in? %>
-          <%= link_to "HOME", tasks_path %>
-          <%= link_to "ログアウト", logout_path, method: :delete %>
-          <%= link_to "ランキング", ranking_path %>
-        <% else %>
-          <%= link_to "会員登録", signup_path %>
-          <%= link_to "ログイン", signin_path %>
-        <% end %>
-        <div class="animation start-home"></div>
-      </nav>
-      <ul>
-          <li><a data-text='CSS' href="#">CSS</a></li>
-          <li><a data-text="HTML" href="#">HTML</a></li>
-          <li><a data-text="Javascript" href="#">JavaScript</a></li>
-          <li><a data-text="About" href="#">About</a></li>
-      </ul>
-      <br /><br />
-  </header>
+    <div class="header"><h2 style="text-align:center; color:white"><b>タスクMITSUMOる？</b></h2></div>
+  <input type="checkbox" class="openSidebarMenu" id="openSidebarMenu">
+  <label for="openSidebarMenu" class="sidebarIconToggle">
+    <div class="spinner diagonal part-1"></div>
+    <div class="spinner horizontal"></div>
+    <div class="spinner diagonal part-2"></div>
+  </label>
 
+  <div id="sidebarMenu">
+    <ul class="sidebarMenuInner">
+      <% if logged_in? %>
+        <li><%= link_to "タスク一覧", tasks_path %></li>
+        <li><%= link_to "ランキング", ranking_path %></li>
+        <li><%= link_to "プロフィール編集", ranking_path %></li>
+        <li><%= link_to "ログアウト", logout_path, method: :delete %></li>
+      <% else %>
+        <li><%= link_to "トップ", "/" %></li>
+        <li><%= link_to "ログイン", signin_path %></li>
+        <li><%= link_to "会員登録", signup_path %></li>
+      <% end %>
+
+    </ul>
+  </div>
+  <div id='center' class="main center">
+  </div>
+</header>
+
+<body>
   <main class="container">
     <br>
-    <p>
-    <% if logged_in? %>
-      <%= link_to "HOME", tasks_path %>
-      <%= link_to "ログアウト", logout_path, method: :delete %>
-      <%= link_to "ランキング", ranking_path %>
-      <%= link_to "プロフィール編集", ranking_path %>
-    <% else %>
-      <%= link_to "会員登録", signup_path %>
-      <%= link_to "ログイン", signin_path %>
-    <% end %>
-    </p>
-
     <%= render "commons/flash" %>
     <%= yield %>
   </main>
@@ -56,6 +50,6 @@
   <footer>
       <div class="container">製作者：未来のワクワクさん</div>
   </footer>
-   <%= javascript_pack_tag 'main' %>
+  <%= javascript_pack_tag 'main' %>
   </body>
 </html>

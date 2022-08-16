@@ -1,10 +1,13 @@
-<h3>ログイン画面</h3>
-<%= form_with(url: signin_path, scope: :session) do |f| %>
-<dl>
-    <dt>E-mails</dt>
-    <dd><%= f.email_field :email %></dd>
-    <dt>パスワード</dt>
-    <dd><%= f.password_field :password %></dd>
-</dl>
-<%= f.submit "ログイン" %>
-<% end %>
+<div class="login-page">
+    <div class="form">
+
+        <%= form_with(url: signin_path, scope: :session, class: "login-form") do |f| %>
+            <%= f.email_field :email, placeholder: "メールアドレス" %>
+            <%= f.password_field :password, placeholder: "パスワード" %>
+            <button>login</button>
+            <p class="message">Not registered? <%= link_to "Create an account", signup_path %></p>
+        <% end %>
+    </div>
+</div>
+
+
