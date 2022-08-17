@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 2022_08_08_075632) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.integer "level", default: 1
+    t.integer "level"
     t.date "birth_date"
     t.string "name"
     t.string "nickname"
