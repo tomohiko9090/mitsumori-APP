@@ -148,7 +148,7 @@ body {
     font-weight: bold;
     padding: 20px;
     cursor: pointer;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+    border-bottom: 1px solid rgba(255, 255, 255);
 }
 .sidebarMenuInner li span{
     display: block;
@@ -433,27 +433,6 @@ input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
 } */
 
 
-/* テキストがふわっと出てくるやつ */
-.fadeIn {
-  animation-name: fadeInAnime;/*1で解説*/
-  animation-fill-mode:backwards;/*2で解説*/
-  animation-duration:3s;/*3で解説*/
-  animation-iteration-count:infinite;/*4で解説*/
-  animation-timing-function:ease;/*5で解説*/
-  animation-delay: 0.5s;/*6で解説*/
-  animation-direction:normal;/*7で解説*/
-  }
-  
-  /*1で解説*/
-  @keyframes fadeInAnime{
-    0% {
-      opacity: 0;
-    }
-  
-    100% {
-      opacity: 1;
-    }
-  }
 
 /* 吹き出し右 */
 .balloon1-left {
@@ -513,16 +492,15 @@ input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
 
 /* ふわっと */
 .fadeIn {
-  animation-name: fadeInAnime;/*1で解説*/
-  animation-fill-mode:backwards;/*2で解説*/
-  animation-duration:3s;/*3で解説*/
-  /* animation-iteration-count:infinite; */
-  animation-timing-function:ease;/*5で解説*/
-  animation-delay: 0.5s;/*6で解説*/
-  animation-direction:normal;/*7で解説*/
+  animation-name: fadeInAnime;
+  animation-fill-mode:backwards;
+  animation-duration:3s;
+  /* animation-iteration-count: 0; */
+  animation-timing-function:ease;
+  animation-delay: 0.5s;
+  animation-direction:normal;
   }
   
-  /*1で解説*/
   @keyframes fadeInAnime{
     0% {
       opacity: 0;
