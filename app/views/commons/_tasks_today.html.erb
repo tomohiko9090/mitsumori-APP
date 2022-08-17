@@ -83,9 +83,9 @@
         <tr>
             <th>タスク進捗</th>
             <th>タスク内容</th>
-            <th>見積もり時間</th>
-            <th>実働時間</th>
-            <th>誤差</th>
+            <th>見積もり時間(min)</th>
+            <th>実働時間(min)</th>
+            <th>絶対誤差(min)</th>
             <th></th>
             <th></th>
         </tr>
@@ -102,14 +102,17 @@
             <td><%= task.estimated_time%></td> 
             <td><%= task.actual_time%></td> 
             <td>
-                <% error_time = task.actual_time - task.estimated_time %>
-                <% if error_time <= 0 %>
-                    <% text = "#{error_time}min" %>
-                    <% color = "green" %>
-                <% else %>
-                    <% text = "+#{error_time}min" %>
-                    <% color = "red" %>
-                <% end %>
+            <% error_time_abs = (task.actual_time - task.estimated_time).abs %>
+            <% if error_time_abs <= 10 %>
+                <% text = "±#{error_time_abs}" %>
+                <% color = "green" %>
+            <% elsif error_time_abs <= 20 %>
+                <% text = "±#{error_time_abs}" %>
+                <% color = "orange" %>
+            <% else %>
+                <% text = "±#{error_time_abs}" %>
+                <% color = "red" %>
+            <% end %>
                 <span style="color:<%= color %>"><b><%= text %></b></span>
             </td> 
             <td><%= link_to "編集", edit_task_path(task) %></td>

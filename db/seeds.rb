@@ -51,12 +51,22 @@ Task.create(user_id: 1, status: 2, task_name: "タスク33", estimated_time: 50,
 Task.create(user_id: 1, status: 2, task_name: "タスク34", estimated_time: 50, actual_time: 50, action_date: "2022/08/13")
 Task.create(user_id: 1, status: 2, task_name: "タスク35", estimated_time: 50, actual_time: 50, action_date: "2022/08/13")
 
-# 本日
-Task.create(user_id: 1, status: 0, task_name: "タスク36", estimated_time: 50, actual_time: 0, action_date: "2022/08/14")
-Task.create(user_id: 1, status: 0, task_name: "タスク37", estimated_time: 50, actual_time: 0, action_date: "2022/08/14")
-Task.create(user_id: 1, status: 0, task_name: "タスク38", estimated_time: 50, actual_time: 0, action_date: "2022/08/14")
-Task.create(user_id: 1, status: 0, task_name: "タスク39", estimated_time: 50, actual_time: 0, action_date: "2022/08/14")
-Task.create(user_id: 1, status: 0, task_name: "タスク40", estimated_time: 50, actual_time: 0, action_date: "2022/08/14")
+# 8日目
+Task.create(user_id: 1, status: 0, task_name: "タスク36", estimated_time: 50, actual_time: 40, action_date: "2022/08/14")
+Task.create(user_id: 1, status: 0, task_name: "タスク37", estimated_time: 50, actual_time: 30, action_date: "2022/08/14")
+Task.create(user_id: 1, status: 0, task_name: "タスク38", estimated_time: 50, actual_time: 40, action_date: "2022/08/14")
+Task.create(user_id: 1, status: 0, task_name: "タスク39", estimated_time: 50, actual_time: 60, action_date: "2022/08/14")
+Task.create(user_id: 1, status: 0, task_name: "タスク40", estimated_time: 50, actual_time: 55, action_date: "2022/08/14")
+
+# 9日目
+Task.create(user_id: 1, status: 0, task_name: "タスク38", estimated_time: 50, actual_time: 40, action_date: "2022/08/15")
+Task.create(user_id: 1, status: 0, task_name: "タスク39", estimated_time: 50, actual_time: 60, action_date: "2022/08/15")
+Task.create(user_id: 1, status: 0, task_name: "タスク40", estimated_time: 50, actual_time: 55, action_date: "2022/08/14")
+
+# 10日目
+Task.create(user_id: 1, status: 0, task_name: "タスク38", estimated_time: 50, actual_time: 40, action_date: "2022/08/14")
+Task.create(user_id: 1, status: 0, task_name: "タスク39", estimated_time: 50, actual_time: 60, action_date: "2022/08/14")
+Task.create(user_id: 1, status: 0, task_name: "タスク40", estimated_time: 50, actual_time: 55, action_date: "2022/08/14")
 
 # とりあえず登録したタスク
 Task.create(user_id: 1, status: 0, task_name: "タスク101", estimated_time: 50, actual_time: 0)
