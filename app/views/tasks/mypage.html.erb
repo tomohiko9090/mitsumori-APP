@@ -1,7 +1,9 @@
 <div class="box fadeIn">
     <% past_total_estimated = Task.where(user_id: @user.id).where.not(action_date: [nil, "2022/08/14"]).sum(:actual_time) %>
     <% s = Task.where(user_id: @user.id).where.not(action_date: [nil, "2022/08/14"]).group(:action_date).size.length %>
-
+    <% if s == 0 %>
+        <% s = 1 %>
+    <% end %>
     <img src="/assets/absorbed.png" width="500" height="400">
     <div class="balloon1-left">
         <h3><%= @user.nickname %>さんの平均実働時間は、</h3>
