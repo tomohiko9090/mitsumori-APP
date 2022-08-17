@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     password = params[:session][:password] 
     if signin(email, password)
       flash[:success] = "ログインしました。"
-      redirect_to mypage_path
+      redirect_to tasks_path
     else
       flash.now[:danger] = "メールアドレスまたは、パスワードが違います。"
       render :new

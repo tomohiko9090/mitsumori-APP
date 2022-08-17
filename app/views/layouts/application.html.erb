@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>mitsumo ❖</title>
+    <title>mitsumori</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -14,12 +14,14 @@
       let app = 1; //2回読みエラーになるため最初に定義しておき、エラー回避。1には意味はない。
       let vm = 1;
     </script> 
+    <%= favicon_link_tag('favicon.ico') %>　
     </head>
 
 <body>
   <header>
       <div class="header">
-      <h2 style="text-align:center; color:white"><b>mitsumori ❖</b></h2></div>
+        <h2 style="text-align:center; color:white"><b>mitsumori ❖</b></h2>
+      </div>
       <input type="checkbox" class="openSidebarMenu" id="openSidebarMenu">
       <label for="openSidebarMenu" class="sidebarIconToggle">
         <div class="spinner diagonal part-1"></div>
@@ -27,23 +29,22 @@
         <div class="spinner diagonal part-2"></div>
       </label>
 
-    <div id="sidebarMenu">
-      <ul class="sidebarMenuInner">
-        <% if logged_in? %>
-          <li><%= link_to "マイページ", mypage_path %></li>
-          <li><%= link_to "タスク一覧", tasks_path %></li>
-          <li><%= link_to "ランキング", ranking_path %></li>
-          <li><%= link_to "プロフィール編集", edit_path %></li>
-          <li><%= link_to "ログアウト", logout_path, method: :delete %></li>
-        <% else %>
-          <li><%= link_to "トップ", "/" %></li>
-          <li><%= link_to "ログイン", signin_path %></li>
-          <li><%= link_to "会員登録", signup_path %></li>
-        <% end %>
-      </ul>
-    </div>
-    <div id='center' class="main center">
-    </div>
+      <div id="sidebarMenu">
+        <ul class="sidebarMenuInner">
+          <% if logged_in? %>
+            <li><%= link_to "タスク一覧", tasks_path %></li>
+            <li><%= link_to "過去のデータ", mypage_path %></li>
+            <%# link_to "ランキング", ranking_path %>
+            <li><%= link_to "プロフィール編集", edit_path %></li>
+            <li><%= link_to "ログアウト", logout_path, method: :delete %></li>
+          <% else %>
+            <li><%= link_to "トップ", "/" %></li>
+            <li><%= link_to "ログイン", signin_path %></li>
+            <li><%= link_to "会員登録", signup_path %></li>
+          <% end %>
+        </ul>
+      </div>
+    <div id='center' class="main center"></div>
   </header>
 
 

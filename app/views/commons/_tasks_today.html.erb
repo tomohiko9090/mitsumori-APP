@@ -2,15 +2,16 @@
     <img src="/assets/palette.png" width="450" height="400">
     <div class="balloon1-left">
         <h4>
+            <p>今日は<%= "#{DateTime.now.year}年#{DateTime.now.month}月#{DateTime.now.day}日" %>です。</p>
             <p>
-            タスク完了にかかる時間は、
+            本日のタスクの総見積もり時間は、
             <% total_todays_estimated_time = 0 %>
             <% @tasks_todo.map{|task| total_todays_estimated_time += task.estimated_time } %>
             <b><%= total_todays_estimated_time/60 %>時間<%= total_todays_estimated_time%60 %>分</b>です。
             </p>
-            <p>
-                <% past_total_estimated = Task.where(user_id: @user.id).where.not(action_date: [nil, "2022/08/14"]).sum(:actual_time) %>
-                <% s = Task.where(user_id: @user.id).where.not(action_date: [nil, "2022/08/14"]).group(:action_date).size.length %>
+            <p> <% today = "#{DateTime.now.year}/#{DateTime.now.month}/#{DateTime.now.day}" %>
+                <% past_total_estimated = Task.where(user_id: @user.id).where.not(action_date: [nil, today]).sum(:actual_time) %>
+                <% s = Task.where(user_id: @user.id).where.not(action_date: [nil, today]).group(:action_date).size.length %>
                 <% if s == 0 %>
                         <% text0 = "" %>
                         <% text1 = "" %>
@@ -20,24 +21,28 @@
                     <% past_total_average_estimated_time = past_total_estimated/s %>
                     <% rest_min = past_total_average_estimated_time - total_todays_estimated_time  %>
                     <% if rest_min >= 0 %>
-                        <% text0 = "過去の傾向から、" %>
+                        <% text0 = "あなたの日次平均実働時間と比べると、" %>
                         <% text1 = "#{rest_min/60}時間#{rest_min%60}分" %>
-                        <% text2 = "時間が余るでしょう。" %>
+                        <% text2 = "時間があまるでしょう。" %>
                         <% color = "orange" %>
                     <% else %>
-                        <% text0 = "過去の傾向から、本日のTodoは" %>
+                        <% text0 = "あなたの日次平均実働時間と比べると、" %>
                         <% text1 = "#{-rest_min/60}時間#{-rest_min%60}分オーバー" %>
-                        <% text2 = "することが予想されます。" %>
+                        <% text2 = "" %>
+                        <% text3 = "することが予想されます。" %>
                         <% color = "red" %>
                     <% end %>
                 <% end %>
                     <span><%= text0 %></span>
                     <span style="color:<%= color %>"><b><%= text1 %></b></span>
                     <span><%= text2 %></span>
+                    <p><%= text3 %></p>
             </p>
         </h4>
     </div>
 </div>
+
+
 
 <div class="d-flex">
     <h2>ToDo</h2>
@@ -65,7 +70,7 @@
                 <%= form_with url: today_task_changed_path, scope: :task_today do |f| %>
                     <%= f.hidden_field :id, value: task.id %>
                     <%= f.hidden_field :action_date, value: task.action_date %>
-                    <%= f.submit "今後のタスクに戻す", class: "btn btn-dark" %>
+                    <%= f.submit "明日以降のタスクへ", class: "btn btn-dark" %>
                 <% end %>
             </td>
             <td><%= link_to "編集", edit_task_path(task) %></td>
@@ -75,7 +80,28 @@
     </table>
     <br>
 
-
+    <div>
+        <%= form_with model: @task do |f| %>
+        <div class="d-flex" style="display:flex;">
+            <div>
+                <p><b>タスク内容</b></p> 
+                <p><%= f.text_field :task_name, class: "form-control input-number border-dark", style: "width:200px", placeholder: "ex.部屋の掃除"%></p>
+            </div>
+            <div>
+                <p><b>見積もり</b></p>
+                <div class="d-flex" style="display:flex;">
+                    <div style="display:flex">
+                        <%= f.number_field :estimated_time, value: 0, class: "form-control input-number border-dark", min: 1, max: 100,  style: "width:70px" %>
+                        <div style="vertical-align: text-bottom">min</div>
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%= f.hidden_field :action_date, value: "#{DateTime.now.year}/#{DateTime.now.month}/#{DateTime.now.day}" %>
+        <%= f.submit "登録する", class: "bubbly-button" %>
+        <% end %>
+    </div>
 
 
     <h2>Done</h2>

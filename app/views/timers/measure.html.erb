@@ -21,8 +21,16 @@
 <%= form_with url: stop_path, scope: :task do |f| %>
     <%= f.hidden_field :id, value: @task.id %>  
     <%= f.hidden_field :time, value: start_time %>
-    <img src="/assets/AiryDesign-anime.gif" width="700" height="400"><br>
-    <%= f.submit "Finish", class: "bubbly-button", style: "font-size: large; align: center" %>
+    <div style="text-align:center">
+        <img src="/assets/AiryDesign-anime.gif" width="700" height="400"><br>
+        <div style="display: flex; justify-content: space-around;">
+          <%= f.submit "＜＜ 戻る", class: "bubbly-button", style: "font-size: large; align: center" %>
+          <%= f.submit "一時停止", class: "bubbly-button", style: "font-size: large; align: center" %>
+          <%= f.submit "終わった ＞＞", class: "bubbly-button", style: "font-size: large; align: center" %>
+        </div>
+    </div>
+  
+ 
 <% end %> 
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>

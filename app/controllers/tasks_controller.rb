@@ -8,13 +8,13 @@ class TasksController < ApplicationController
   end
 
   def index
+    today = "#{DateTime.now.year}/#{DateTime.now.month}/#{DateTime.now.day}"
     @user = current_user
     @task = Task.new
     @tasks_future = Task.where(user_id: @user.id, action_date: nil).order(:status, :created_at)
-    @tasks_past = Task.where(user_id: @user.id).where.not(action_date: [nil, "2022/08/14"]).order(:status, :created_at)
-    # @tasks_past = Task.where(user_id: @user.id).where.not(action_date: [nil, "2022/08/14"]).order(:status, :created_at).page(params[:page]).per(10)
-    @tasks_todo = Task.where(user_id: @user.id, status: 0, action_date: "2022/08/14").order(:created_at)
-    @tasks_done = Task.where(user_id: @user.id, status: 2, action_date: "2022/08/14").order(:created_at)
+    @tasks_past = Task.where(user_id: @user.id).where.not(action_date: [nil, today]).order(action_date: :desc)
+    @tasks_todo = Task.where(user_id: @user.id, status: 0, action_date: today).order(:created_at)
+    @tasks_done = Task.where(user_id: @user.id, status: 2, action_date: today).order(:created_at)
   end
 
   def show
@@ -30,7 +30,7 @@ class TasksController < ApplicationController
     @task = current_user.task.build(task_params)
     if @task.save
       flash[:success] = "タスクを追加しました"
-      session[:tab] = 2
+      session[:tab] = 1
       redirect_to tasks_path
     else
       flash.now[:danger] = "登録できませんでした"
@@ -85,7 +85,8 @@ class TasksController < ApplicationController
     task_id = params[:task_today][:id]
     action_date = params[:task_today][:action_date]
     if action_date == ""
-      Task.where(id: task_id).update(action_date: "2022/08/14")
+      today = "#{DateTime.now.year}/#{DateTime.now.month}/#{DateTime.now.day}"
+      Task.where(id: task_id).update(action_date: today)
       session[:tab] = 2
     else
       Task.where(id: task_id).update(action_date: "")
@@ -102,7 +103,7 @@ class TasksController < ApplicationController
 
   private
   def task_params
-    params.require(:task).permit(:task_name, :estimated_time, :status, :id)
+    params.require(:task).permit(:task_name, :estimated_time, :status, :id, :action_date)
   end
 
   def set_task
