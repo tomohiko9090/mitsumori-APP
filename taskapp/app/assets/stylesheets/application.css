@@ -516,7 +516,7 @@ input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
   animation-name: fadeInAnime;/*1で解説*/
   animation-fill-mode:backwards;/*2で解説*/
   animation-duration:3s;/*3で解説*/
-  animation-iteration-count:infinite;/*4で解説*/
+  /* animation-iteration-count:infinite; */
   animation-timing-function:ease;/*5で解説*/
   animation-delay: 0.5s;/*6で解説*/
   animation-direction:normal;/*7で解説*/
