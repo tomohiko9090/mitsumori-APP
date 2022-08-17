@@ -2,6 +2,7 @@
     <% past_total_estimated = Task.where(user_id: @user.id).where.not(action_date: [nil, "2022/08/14"]).sum(:actual_time) %>
     <% s = Task.where(user_id: @user.id).where.not(action_date: [nil, "2022/08/14"]).group(:action_date).size.length %>
 
+    <img src="/assets/absorbed.png" width="500" height="400">
 
 </div>
 
