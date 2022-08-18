@@ -75,9 +75,9 @@ Task.create(user_id: 1, status: 2, task_name: "タスク48", estimated_time: 50,
 Task.create(user_id: 1, status: 2, task_name: "タスク49", estimated_time: 50, actual_time: 25, action_date: "2022/08/17")
 
 # 12日目（本日）
-Task.create(user_id: 1, status: 0, task_name: "タスク50", estimated_time: 70, actual_time: 0, action_date: "2022/08/18")
-Task.create(user_id: 1, status: 0, task_name: "タスク51", estimated_time: 70, actual_time: 0, action_date: "2022/08/18")
-Task.create(user_id: 1, status: 0, task_name: "タスク52", estimated_time: 50, actual_time: 0, action_date: "2022/08/18")
+Task.create(user_id: 1, status: 0, task_name: "タスク50", estimated_time: 60, actual_time: 0, action_date: "2022/08/18")
+Task.create(user_id: 1, status: 0, task_name: "タスク51", estimated_time: 50, actual_time: 0, action_date: "2022/08/18")
+Task.create(user_id: 1, status: 0, task_name: "タスク52", estimated_time: 60, actual_time: 0, action_date: "2022/08/18")
 
 # とりあえず登録したタスク
 Task.create(user_id: 1, status: 0, task_name: "タスク101", estimated_time: 50, actual_time: 0)
