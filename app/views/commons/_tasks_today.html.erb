@@ -21,12 +21,12 @@
                     <% past_total_average_estimated_time = past_total_estimated/s %>
                     <% rest_min = past_total_average_estimated_time - total_todays_estimated_time  %>
                     <% if rest_min >= 0 %>
-                        <% text0 = "あなたの日次平均実働時間と比べると、" %>
+                        <% text0 = "あなたの1日の平均実働時間と比べると" %>
                         <% text1 = "#{rest_min/60}時間#{rest_min%60}分" %>
                         <% text2 = "時間があまるでしょう。" %>
                         <% color = "orange" %>
                     <% else %>
-                        <% text0 = "あなたの日次平均実働時間と比べると、" %>
+                        <% text0 = "あなたの1日の平均実働時間と比べると" %>
                         <% text1 = "#{-rest_min/60}時間#{-rest_min%60}分オーバー" %>
                         <% text2 = "" %>
                         <% text3 = "することが予想されます。" %>
