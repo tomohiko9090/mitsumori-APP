@@ -1,3 +1,4 @@
+/* flashのアラート */
 .alert {
     padding: 8px;
     border-radius: 4px;
@@ -31,17 +32,13 @@ th {
     background: #eee;
 }
 
+/* 画面全体を整える */
 body {
     margin: 0;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
-/* header {
-    background: #444;
-    color: #fff;
-    padding: 10px 0;
-} */
 footer {
     margin-top: auto;
     padding: 10px 0;
@@ -52,7 +49,7 @@ footer {
 
 
 
-/* 以下タブの装飾 */
+/* タスクタブの装飾 */
 ul.tab-menu{
     display: flex;
     margin: 0 0 15px 0;
@@ -77,13 +74,19 @@ ul.tab-menu{
     padding: 10px;
 }
 
+
+
+/* カウントダウンタイマーの装飾 */
 .timer {
     font-weight: bold;
     font-size: 1.6em;
     color: #222;
   }
 
-/* 以下、navbar */
+
+
+
+/* navbar */
 @import url('https://fonts.googleapis.com/css?family=Varela+Round');
 html, body {
     overflow-x: hidden;
@@ -215,37 +218,9 @@ input[type=checkbox] {
     float: left;
     margin-top: 3px;
 }
-/* input[type=checkbox]:checked ~ .sidebarIconToggle > .horizontal {
-    transition: all 0.3s;
-    box-sizing: border-box;
-    opacity: 0;
-}
-input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-1 {
-    transition: all 0.3s;
-    box-sizing: border-box;
-    transform: rotate(135deg);
-    margin-top: 8px;
-}
-input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
-    transition: all 0.3s;
-    box-sizing: border-box;
-    transform: rotate(-135deg);
-    margin-top: -9px;
-} */
 
 
-
-
-
-
-/* きらきらボタン */
-/* body {
-  font-size: 16px;
-  font-family: "Helvetica", "Arial", sans-serif;
-  text-align: center;
-  background-color: #f8faff;
-}  */
-
+/* きらきらボタン（登録ボタンなど） */
 .bubbly-button {
   font-family: "Helvetica", "Arial", sans-serif;
   display: inline-block;
@@ -329,12 +304,14 @@ input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
   }
 } 
 
-/* 以下、チェック入れるやつ */
+/* チェック入れるやつ（本番では使用していない） */
 .form-check-input:checked {
     background-color: rgb(38, 191, 161);
     border-color: rgb(38, 191, 161);
   }
   
+
+
 /* ログイン画面 */
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
@@ -390,54 +367,10 @@ input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
   color: #4CAF50;
   text-decoration: none;
 }
-/* .form .register-form {
-  display: none;
-} */
-/* .container {
-  position: relative;
-  z-index: 1;
-  max-width: 300px;
-  margin: 0 auto;
-}
-.container:before, .container:after {
-  content: "";
-  display: block;
-  clear: both;
-}
-.container .info {
-  margin: 50px auto;
-  text-align: center;
-}
-.container .info h1 {
-  margin: 0 0 15px;
-  padding: 0;
-  font-size: 36px;
-  font-weight: 300;
-  color: #1a1a1a;
-}
-.container .info span {
-  color: #4d4d4d;
-  font-size: 12px;
-}
-.container .info span a {
-  color: #000000;
-  text-decoration: none;
-}
-.container .info span .fa {
-  color: #EF3B3A;
-} */
-/* .login-body {
-  background: #76b852;
-  background: rgb(141,194,111);
-  background: linear-gradient(90deg, rgba(141,194,111,1) 0%, rgba(118,184,82,1) 50%);
-  font-family: "Roboto", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;      
-} */
 
 
 
-/* 吹き出し右 */
+/* 吹き出し（右側） */
 .balloon1-left {
   position: relative;
   display: inline-block;
@@ -465,7 +398,7 @@ input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
   padding: 0;
 }
 
-/* 吹き出し上 */
+/* 吹き出し（上側） */
 .balloon1 {
   position: relative;
   display: inline-block;
@@ -493,12 +426,11 @@ input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
   padding: 0;
 }
 
-/* ふわっと */
+/* ふわっとさせる */
 .fadeIn {
   animation-name: fadeInAnime;
   animation-fill-mode:backwards;
   animation-duration:3s;
-  /* animation-iteration-count: 0; */
   animation-timing-function:ease;
   animation-delay: 0.5s;
   animation-direction:normal;
@@ -516,7 +448,7 @@ input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
 
 
 
-/* トップページのボタン*/
+/* トップページの3Dボタン*/
 @import "https://use.fontawesome.com/releases/v5.13.0/css/all.css";
 
 *,
@@ -531,11 +463,6 @@ html {
   box-sizing: border-box;
   font-size: 62.5%;
 }
-
-/* 背景用*/
-/* body {
-  padding: 30px;
-} */
 
 .btn,
 a.btn,
@@ -723,15 +650,7 @@ html {
   display: block;
   color: #212529;
 }
-/* #box1 {
-  background-color: #0050b7
-}
-#box2 {
-  background-color: #e11cba
-}
-#box3 {
-  background-color: #04600e
-} */
+
 
 /* 画像に陰を作る */
 .basic4 {

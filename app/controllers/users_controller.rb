@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
     # テンプレ表示メソッド
     def index
-        @users = User.all #.order(:level)
+        @users = User.all
     end
 
     def new

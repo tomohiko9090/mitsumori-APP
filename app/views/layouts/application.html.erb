@@ -35,7 +35,7 @@
           <% if logged_in? %>
             <li><%= link_to "タスク一覧", tasks_path %></li>
             <li><%= link_to "過去のデータ", mypage_path %></li>
-            <%# link_to "ランキング", ranking_path %>
+            <%# link_to "ランキング", ranking_path %><%# 本当は入れたかったが間に合わず %>
             <li><%= link_to "プロフィール編集", edit_path %></li>
             <li><%= link_to "ログアウト", logout_path, method: :delete %></li>
           <% else %>

@@ -18,9 +18,7 @@ class TasksController < ApplicationController
   end
 
   def show
-
   end
-
 
   def new
     @task = Task.new
@@ -67,13 +65,6 @@ class TasksController < ApplicationController
       @task = Task.find(params[:task][:id].to_i)
       Task.where(id: params[:task][:id]).update(status: next_status)
       render "timers/measure"
-      # redirect_back(fallback_location: tasks_path)
-      # render :index
-      # index
-    # when 1
-    #   next_status = 2
-    #   Task.where(id: params[:task][:id]).update(status: next_status)
-    #   redirect_back(fallback_location: tasks_path)
     when 2
       next_status = 0
       Task.where(id: params[:task][:id]).update(status: next_status)
