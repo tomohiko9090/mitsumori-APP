@@ -42,7 +42,28 @@
     </div>
 </div>
 
-
+<div style="display: flex; justify-content: center;">
+    <%= form_with model: @task do |f| %>
+    <div class="d-flex" style="display:flex;">
+        <div>
+            <p><b>タスク内容</b></p> 
+            <p><%= f.text_field :task_name, class: "form-control input-number border-dark", style: "width:200px", placeholder: "ex.部屋の掃除"%></p>
+        </div>
+        <div>
+            <p><b>見積もり</b></p>
+            <div class="d-flex" style="display:flex;">
+                <div style="display: flex;align-items:end">
+                    <%= f.number_field :estimated_time, value: 0, class: "form-control input-number border-dark", min: 1, max: 100,  style: "width:70px" %>
+                    <div style="vertical-align: text-bottom">min</div>
+                
+                </div>
+            </div>
+        </div>
+    </div>
+    <%= f.hidden_field :action_date, value: "#{DateTime.now.year}/#{DateTime.now.month}/#{DateTime.now.day}" %>
+    <%= f.submit "登録する", class: "bubbly-button" %>
+    <% end %>
+</div>
 
 <div class="d-flex">
     <h2>ToDo</h2>
@@ -80,29 +101,6 @@
     </table>
     <br>
 
-    <div>
-        <%= form_with model: @task do |f| %>
-        <div class="d-flex" style="display:flex;">
-            <div>
-                <p><b>タスク内容</b></p> 
-                <p><%= f.text_field :task_name, class: "form-control input-number border-dark", style: "width:200px", placeholder: "ex.部屋の掃除"%></p>
-            </div>
-            <div>
-                <p><b>見積もり</b></p>
-                <div class="d-flex" style="display:flex;">
-                    <div style="display:flex">
-                        <%= f.number_field :estimated_time, value: 0, class: "form-control input-number border-dark", min: 1, max: 100,  style: "width:70px" %>
-                        <div style="vertical-align: text-bottom">min</div>
-                    
-                    </div>
-                </div>
-            </div>
-        </div>
-        <%= f.hidden_field :action_date, value: "#{DateTime.now.year}/#{DateTime.now.month}/#{DateTime.now.day}" %>
-        <%= f.submit "登録する", class: "bubbly-button" %>
-        <% end %>
-    </div>
-
 
     <h2>Done</h2>
     <table class="table table-hover">
@@ -111,7 +109,7 @@
             <th>タスク内容</th>
             <th>見積もり時間(min)</th>
             <th>実働時間(min)</th>
-            <th>絶対誤差(min)</th>
+            <th>見積もり誤差(min)</th>
             <th></th>
             <th></th>
         </tr>

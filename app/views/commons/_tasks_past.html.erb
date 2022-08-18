@@ -1,4 +1,4 @@
-<div style="justify-content: center;">
+<div style="justify-content: center;align-items: center;display: flex;">
 <img src="/assets/analytics.png" width="450" height="400">
 <div class="balloon1-left">
 <table class="table table-hover">
@@ -8,7 +8,8 @@
         <th>タスク内容</th>
         <th>見積もり時間(min)</th>
         <th>実働時間(min)</th>
-        <th>絶対誤差(min)</th>
+        <th></th>
+        <th>見積もり誤差(min)</th>
     </tr>
     <% tasks_past_worst = @tasks_past.map{|task| [task.task_name, task.estimated_time, task.actual_time, (task.estimated_time - task.actual_time).abs]}.sort_by{|x| x[3]}.reverse![0..2] %>
     <% tasks_past_worst.each_with_index do |task, index| %>
@@ -25,6 +26,7 @@
         <td>
             <%= task[2] %>
         </td>
+        <td>➡︎</td>
         <td>
             <% error_time_abs = task[3] %>
             <% if error_time_abs <= 10 %>
@@ -55,7 +57,7 @@
         <th>タスク内容</th>
         <th>見積もり時間(min)</th>
         <th>実働時間(min)</th>
-        <th>絶対誤差(min)</th>
+        <th>見積もり誤差(min)</th>
         <th></th>
         <th></th>
     </tr>

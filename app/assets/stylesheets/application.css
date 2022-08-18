@@ -106,6 +106,7 @@ body {
     height: 60px!important;
     overflow: hidden;
     z-index: 10;
+    top: 0;
 }
 .main {
     margin: 0 auto;
@@ -136,6 +137,7 @@ body {
     transform: translateX(-250px);
     transition: transform 250ms ease-in-out;
     background: linear-gradient(180deg, rgb(118,184,82) 0%, #FFFFFF 100%);
+    top:0;
 }
 .sidebarMenuInner{
     margin:0;
