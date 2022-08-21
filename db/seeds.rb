@@ -95,5 +95,5 @@ end
 User.create(name: "テストさん", level: 1, birth_date: "1997/04/05", email: "test@gmail.com", password: "test2", nickname: "テスト")
 
 Task.delete_all
-insertTestData(5)
+insertTestData(11)
 
