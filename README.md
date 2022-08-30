@@ -1,12 +1,11 @@
 # Task-APP
 タスク見積もり向上のためのアプリ<b>「mitsumo」<b>.  
 https://mitsumoriheroku.herokuapp.com/tasks
-[](
 ## リンク一覧
-- [DrawSQL](https://drawsql.app/teams/--109/diagrams/task-app-mitsumo)\
-- [ワイヤーフレーム](https://docs.google.com/presentation/d/1NFN-4HQrUUHpKZJMY7fSJQKlNyEoEVLvPS-sP0J-5Cw/edit#slide=id.p)\
-- [スライド発表](https://docs.google.com/presentation/d/1pP8PoIwpLFg5yyZ4kPjM-vtRJusNTsBewJEeBgUqjoQ/edit)\
-)
+- [DrawSQL](https://drawsql.app/teams/--109/diagrams/task-app-mitsumo)
+- [ワイヤーフレーム](https://docs.google.com/presentation/d/1NFN-4HQrUUHpKZJMY7fSJQKlNyEoEVLvPS-sP0J-5Cw/edit#slide=id.p)
+- [スライド発表](https://docs.google.com/presentation/d/1pP8PoIwpLFg5yyZ4kPjM-vtRJusNTsBewJEeBgUqjoQ/edit)
+
 
 
 ## 4つの機能
