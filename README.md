@@ -1,8 +1,8 @@
 # Task-APP
-タスク見積もり向上のためのアプリ<b>「mitsumori」<b>.  
+タスク見積もり向上のためのアプリ<b>「mitsumori」<b>  
 https://mitsumoriheroku.herokuapp.com/tasks
   
-## 一言でいうと
+## 一言でいうと...
 タスクの「見積もり時間」と「実際にかかった時間」の乖離を示し、時間の見積を改善するアプリ
   
 ## ターゲット
