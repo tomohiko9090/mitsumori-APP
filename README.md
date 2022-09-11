@@ -1,7 +1,7 @@
 # Task-APP
 タスク見積もり向上のためのアプリ<b>「mitsumori」<b>  
 https://mitsumoriheroku.herokuapp.com/tasks
-<img width="1907" alt="スクリーンショット 0004-09-12 午前7 20 01" src="https://user-images.githubusercontent.com/66200485/189551287-859b56ec-64d2-42b2-b9c2-f16711a191b2.png">
+<kbd><img width="1907" alt="スクリーンショット 0004-09-12 午前7 20 01" src="https://user-images.githubusercontent.com/66200485/189551287-859b56ec-64d2-42b2-b9c2-f16711a191b2.png"></kbd>
 
 
 ## 使用した技術
