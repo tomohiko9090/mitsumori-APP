@@ -1,18 +1,6 @@
 # Task-APP
 タスク見積もり向上のためのアプリ<b>「mitsumori」<b>  
 https://mitsumoriheroku.herokuapp.com/tasks
-  
-## 一言でいうと...
-タスクの「見積もり時間」と「実際にかかった時間」の乖離を示し、時間の見積を改善するアプリ
-  
-## ターゲット
-<img width="892" alt="スクリーンショット 0004-08-31 午前7 38 42" src="https://user-images.githubusercontent.com/66200485/187555845-8e2ea412-2e5d-49af-b650-88dbac172d16.png">
- 
-## ターゲットの課題を解決する方法
-<img width="1203" alt="スクリーンショット 0004-08-31 午前7 43 12" src="https://user-images.githubusercontent.com/66200485/187556411-85468e6d-9e9b-4a0c-becd-62bdaefcae16.png">
-  
-## アプリのこだわりポイント
-<img width="948" alt="スクリーンショット 0004-08-31 午前7 40 00" src="https://user-images.githubusercontent.com/66200485/187555983-78bc5af2-7c66-4e1e-9e5a-2869dd77448f.png">
 
 
 ## 使用した技術
@@ -29,6 +17,19 @@ https://mitsumoriheroku.herokuapp.com/tasks
 
 ### サーバー
 - Heroku
+  
+## 一言でいうと...
+タスクの「見積もり時間」と「実際にかかった時間」の乖離を示し、時間の見積を改善するアプリ
+  
+## ターゲット
+<img width="892" alt="スクリーンショット 0004-08-31 午前7 38 42" src="https://user-images.githubusercontent.com/66200485/187555845-8e2ea412-2e5d-49af-b650-88dbac172d16.png">
+ 
+## ターゲットの課題を解決する方法
+<img width="1203" alt="スクリーンショット 0004-08-31 午前7 43 12" src="https://user-images.githubusercontent.com/66200485/187556411-85468e6d-9e9b-4a0c-becd-62bdaefcae16.png">
+  
+## アプリのこだわりポイント
+<img width="948" alt="スクリーンショット 0004-08-31 午前7 40 00" src="https://user-images.githubusercontent.com/66200485/187555983-78bc5af2-7c66-4e1e-9e5a-2869dd77448f.png">
+
 
   
   
