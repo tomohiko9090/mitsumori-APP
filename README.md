@@ -13,8 +13,6 @@ https://mitsumoriheroku.herokuapp.com/tasks
 <img width="948" alt="スクリーンショット 0004-08-31 午前7 40 00" src="https://user-images.githubusercontent.com/66200485/187555983-78bc5af2-7c66-4e1e-9e5a-2869dd77448f.png">
 
 
-  
-
 ## 使用した技術
 ### プログラミング言語
 - Ruby 2.7.6 
@@ -84,31 +82,4 @@ https://mitsumoriheroku.herokuapp.com/tasks
 - 誰のためにそんな解決ができるのかを記載する
 - 複数人で使用できるアプリにする
 - 「思考」「作業」「集中」の三つにわける
-  - 思考|場所にはとらわれないが、頭は使うし、アイデアが大事
-  - 集中|頭
-  - 作業|頭は使わないが、
 
-# README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
