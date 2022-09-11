@@ -2,6 +2,8 @@
 タスク見積もり向上のためのアプリ<b>「mitsumori」<b>.  
 https://mitsumoriheroku.herokuapp.com/tasks
   
+## 一言でいうと
+タスクの「見積もり時間」と「実際にかかった時間」の乖離を示し、時間の見積を改善するアプリ
   
 ## ターゲット
 <img width="892" alt="スクリーンショット 0004-08-31 午前7 38 42" src="https://user-images.githubusercontent.com/66200485/187555845-8e2ea412-2e5d-49af-b650-88dbac172d16.png">
@@ -14,7 +16,7 @@ https://mitsumoriheroku.herokuapp.com/tasks
 
 
 ## 使用した技術
-### プログラミング言語
+### 言語
 - Ruby 2.7.6 
 - JavaScript
 
