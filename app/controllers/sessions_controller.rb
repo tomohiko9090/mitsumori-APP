@@ -1,3 +1,4 @@
+# typed: false
 class SessionsController < ApplicationController
   before_action :require_logged_in, only: [:destroy]
   before_action :already_logged_in, only: [:new, :create]

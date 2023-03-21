@@ -1,3 +1,4 @@
+# typed: false
 module SessionsHelper
     # ログイン中のユーザを取得する→無駄にDBにアクセスせずに済む
     def current_user

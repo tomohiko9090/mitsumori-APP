@@ -1,3 +1,4 @@
+# typed: false
 require 'time'
 
 
@@ -20,4 +21,3 @@ class TimersController < ApplicationController
     redirect_to tasks_path
   end
 end
- 

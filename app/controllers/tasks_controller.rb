@@ -1,9 +1,13 @@
+# typed: false
 class TasksController < ApplicationController
+  extend T::Sig
   before_action :require_logged_in
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   before_action :correct_user, only: [:edit, :update, :destroy]
 
+  sig {params(x: String).returns(Integer)}
   def mypage
+    sig {params(x: String).returns(Integer)}
     @user = current_user
   end
 
@@ -25,7 +29,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = current_user.task.build(task_params)
+    @task = current_user.tasks.build(task_params)
     if @task.save
       flash[:success] = "タスクを追加しました"
       session[:tab] = 1
