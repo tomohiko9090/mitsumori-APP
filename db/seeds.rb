@@ -1,3 +1,4 @@
+# typed: true
 def insertTestData(user_id)  
 
   # 明後日以降のタスク
@@ -87,8 +88,8 @@ def insertTestData(user_id)
 end
 
 
-# User.create(name: "未来のワクワクさん", level: 3, birth_date: "1997/04/05", email: "tomo.k9090@gmail.com", password: "taitasu2", nickname: "未来のワクワク")
-# User.create(name: "葛葉朋彦", level: 1, birth_date: "1997/04/05", email: "kuzuba.tomohiko@lmi.ne.jp", password: "", nickname: "葛葉朋彦")
+User.create(name: "未来のワクワクさん", level: 3, birth_date: "1997/04/05", email: "tomo.k9090@gmail.com", password: "taitasu2", nickname: "未来のワクワク")
+User.create(name: "葛葉朋彦", level: 1, birth_date: "1997/04/05", email: "kuzuba.tomohiko@lmi.ne.jp", password: "", nickname: "葛葉朋彦")
 
 
 # User.delete_all

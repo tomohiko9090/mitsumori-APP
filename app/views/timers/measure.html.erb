@@ -1,10 +1,21 @@
 <h1>「<%= @task.task_name %>」を終わらせろ！！</h1>
 
+<div id="app2">
+
+  <%# <button v-if="startFlg!=true" class="startButton mb-20" @click="gameStart(); startTimer()" v-show="!active">START</button>
+  <div></div>
+  
+  <p><b>{{ interval.toFixed(2) }}</b></p>
+  <div class="question mb-20">{{ current_question }}</div>
+  <div v-if="current_question_counts == question_counts" class="clear">Clear!</div>
+  <div class="typeFormWrapper mb-20">
+</div>
+
 <div class="timer" id="timer"></div>
 
 <div>
     残り時間
-</div>
+</div> %>
 
 
 <div id="countdownArea" class="countdown">
@@ -16,10 +27,8 @@
 
 <% start_time = Time.now %>
 
-<%  %>
-
 <%= form_with url: stop_path, scope: :task do |f| %>
-    <%= f.hidden_field :id, value: @task.id %>  
+    <%= f.hidden_field :id, value: @task.id %>
     <%= f.hidden_field :time, value: start_time %>
     <div style="text-align:center">
         <img src="/assets/AiryDesign-anime.gif" width="700" height="400"><br>
@@ -70,8 +79,40 @@ let countdown = setInterval(function(){
 }, 1000) //1秒間に1度処理する
 
 
-for (var i = 0; i < bubblyButtons.length; i++) {
-  bubblyButtons[i].addEventListener('click', animateButton, false);
-}
+// for (var i = 0; i < bubblyButtons.length; i++) {
+//   bubblyButtons[i].addEventListener('click', animateButton, false);
+// }
+
+// 以下新しいタイマー
+let app2 = Vue.createApp({
+
+    data(){
+        return {
+            active : false,
+            start : 0,
+            timer : 0,
+            interval : 0,
+            accum : 0, 
+        }
+    },
+
+    methods:{
+        startTimer(){
+            this.active = true;
+            this.start = Date.now();
+            this.timer = setInterval(()=>{ this.interval = this.accum + (Date.now() - this.start) * 0.001;}, 10); // 10msごとに現在時刻とstartを押した時刻の差を足す
+         },
+        stopTimer(){
+            this.active = false;
+            this.accum = this.interval;
+            clearInterval(this.timer);
+        },
+        resetTimer(){
+            this.interval = 0;
+            this.accum = 0;
+            this.start = Date.now();
+        }
+    }
+}).mount("#app2")
 
 </script>

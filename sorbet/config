@@ -1,0 +1,9 @@
+--dir
+.
+--ignore=/tmp/
+--ignore=/vendor/bundle
+{
+  file_list: [
+    "target_file.rb"
+  ]
+}
