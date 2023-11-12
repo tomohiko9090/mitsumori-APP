@@ -18,7 +18,8 @@ Rails.application.routes.draw do
   delete :done_destroy, to: "tasks#done_destroy"
 
   get :measure, to: "timers#measure"
-  post :stop, to: "timers#stop"
+  post :stop, to: "timers#pouse" #一時停止
+  post :stop, to: "timers#stop" #終了
   get :timer, to: "timers#timer"
 
   post :today_task_changed, to: "tasks#today_task_changed"

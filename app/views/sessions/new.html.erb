@@ -1,5 +1,11 @@
 <div class="login-page">
     <div class="form">
+    <% @message = "<script>alert(!)</script>"  %>
+    <%= @message %>    <br>
+    <%= h(@message) %>
+    <%== @message %> 
+    <%= raw(@message) %>
+    <%= @message.html_safe %>
 
         <%= form_with(url: signin_path, scope: :session, class: "login-form") do |f| %>
             <%= f.email_field :email, placeholder: "メールアドレス" %>

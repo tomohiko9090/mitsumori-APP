@@ -78,7 +78,7 @@
             <%= form_with url: change_status_path, scope: :task do |f| %>
                 <%= f.hidden_field :id, value: task.id %>   
                 <%= f.hidden_field :status, value: task.status %>
-                <%= f.submit ["作業開始", "実働中", "完了"][task.status || 0], class: "btn btn-dark" %>
+                <%= f.submit ["作業開始", "一時停止", "完了"][task.status || 0], class: "btn btn-dark" %>
             <% end %>
         </td>
         <td><%= task.task_name %></td>

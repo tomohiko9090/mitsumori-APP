@@ -28,7 +28,7 @@
 <% start_time = Time.now %>
 
 <%= form_with url: stop_path, scope: :task do |f| %>
-    <%= f.hidden_field :id, value: @task.id %>  
+    <%= f.hidden_field :id, value: @task.id %>
     <%= f.hidden_field :time, value: start_time %>
     <div style="text-align:center">
         <img src="/assets/AiryDesign-anime.gif" width="700" height="400"><br>

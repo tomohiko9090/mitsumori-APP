@@ -68,3 +68,4 @@ gem "sorbet", :group => :development
 gem "sorbet-runtime"
 gem 'sorbet-rails'
 
+gem "ruby-openai"
