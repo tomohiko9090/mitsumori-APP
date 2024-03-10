@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   delete "logout", to: "sessions#destroy"
 
   post :change_status, to: "tasks#change_status"
+  get :change_status, to: "tasks#change_status"
 
   delete :done_destroy, to: "tasks#done_destroy"
 
