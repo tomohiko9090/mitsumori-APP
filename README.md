@@ -6,7 +6,7 @@ https://mitsumoriheroku.herokuapp.com/tasks
 
 ## 使用した技術
 ### 言語
-- Ruby 2.7.6 
+- Ruby 3.2.2
 - JavaScript
 
 ### フレームワーク
@@ -17,7 +17,7 @@ https://mitsumoriheroku.herokuapp.com/tasks
 - postgresql 14.4
 
 ### サーバー
-- Heroku
+-
   
 ## 一言でいうと...
 タスクの「見積もり時間」と「実際にかかった時間」の乖離を示し、時間の見積を改善するアプリ
