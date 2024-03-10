@@ -64,3 +64,5 @@ gem 'chartkick'
 gem "groupdate"
 
 gem 'net-smtp'
+
+gem 'pry-rails'

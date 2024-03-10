@@ -656,3 +656,60 @@ html {
 .basic4 {
   box-shadow: 0 10px 25px 0 rgba(0, 0, 0, .5);
 }
+
+
+.btn_21 {
+  display: inline-block;
+  /* ブロック要素をインラインブロックに変更して、左寄せにする */
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+  width: 100px;
+  /* ボタンの幅を狭くする */
+  margin: 0;
+  /* 左寄せにするためにmarginを0に設定 */
+  padding: 0.5rem 1rem;
+  /* ボタン内のパディングを小さくする */
+  font-weight: bold;
+  border: 2px solid #8adc5a;
+  background: #8adc5a;
+  color: #fff;
+  border-radius: 5px;
+  transition: 0.5s;
+  animation: move_c 1s infinite;
+}
+
+@keyframes move_c {
+  0% {
+    transform: translate(0px, 0);
+  }
+
+  50% {
+    transform: translate(0px, 0) rotateZ(5deg);
+  }
+}
+
+.btn_21:hover {
+  color: #8adc5a;
+  background: #fff;
+}
+
+.dli-caret-down {
+  display: inline-block;
+  /* インラインブロックに変更 */
+  vertical-align: middle;
+  color: #CCCCCC;
+  line-height: 1;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-color: transparent;
+  border-width: 1.94856em 1.125em;
+  /* サイズ調整は適宜行ってください */
+  border-top-color: currentColor;
+  border-bottom: 0;
+}
+
+.parent {
+  text-align: center;
+}

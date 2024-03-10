@@ -14,6 +14,7 @@ class TasksController < ApplicationController
     @tasks_future = Task.where(user_id: @user.id, action_date: nil).order(:status, :created_at)
     @tasks_past = Task.where(user_id: @user.id).where.not(action_date: [nil, today]).order(action_date: :desc)
     @tasks_todo = Task.where(user_id: @user.id, status: 0, action_date: today).order(:created_at)
+    @tasks_progress = Task.where(user_id: @user.id, status: 1, action_date: today).order(:created_at)
     @tasks_done = Task.where(user_id: @user.id, status: 2, action_date: today).order(:created_at)
   end
 
@@ -56,19 +57,30 @@ class TasksController < ApplicationController
   end
 
   def change_status
-    status_num = params[:task][:status].to_i
+    if params[:task].present?
+      session[:task_params] = params[:task].permit(:id, :status).to_h
+      @task = Task.find(session[:task_params]["id"].to_i)
+    elsif session[:task_params].present?
+      @task = Task.find(session[:task_params]["id"].to_i)
+    else
+      # セッションにもparamsにもデータがない場合は、ユーザーを適切なページにリダイレクトする
+      flash[:danger] = "タスク情報が見つかりません。"
+      redirect_to tasks_path and return
+    end
+
+    status_num = session[:task_params]["status"].to_i
+
     case status_num
-    
-    when 0
-      next_status = 2
+    when 0, 1
       @user = current_user
-      @task = Task.find(params[:task][:id].to_i)
-      Task.where(id: params[:task][:id]).update(status: next_status)
       render "timers/measure"
     when 2
       next_status = 0
-      Task.where(id: params[:task][:id]).update(status: next_status)
+      @task.update(status: next_status)
       redirect_back(fallback_location: tasks_path)
+    else
+      flash[:danger] = "無効なステータス値です。"
+      redirect_to tasks_path
     end
   end
 

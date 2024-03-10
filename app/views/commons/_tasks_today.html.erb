@@ -71,7 +71,7 @@
         <tr>
             <th>タスク進捗</th>
             <th>タスク内容</th>
-            <th>見積もり時間(min)</th>
+            <th>見積もり時間</th>
             <th></th>
             <th></th>
             <th></th>
@@ -82,11 +82,11 @@
                 <%= form_with url: change_status_path, scope: :task do |f| %>
                     <%= f.hidden_field :id, value: task.id %>   
                     <%= f.hidden_field :status, value: task.status %>
-                    <%= f.submit ["作業開始!", "実働中", "完了"][task.status || 0], class: "btn btn-success" %>
+                    <%= f.submit ["作業開始!", "実施中", "完了"][task.status || 0], class: "btn btn-success", style: "width: 100px;" %>
                 <% end %>
             </td>
             <td><b><%= task.task_name %></b></td>
-            <td><%= task.estimated_time%></td> 
+            <td><%= task.estimated_time%>min</td> 
             <td>
                 <%= form_with url: today_task_changed_path, scope: :task_today do |f| %>
                     <%= f.hidden_field :id, value: task.id %>
@@ -101,17 +101,47 @@
     </table>
     <br>
 
+    <div class="parent">
+        <span class="dli-caret-down"></span>
+    </div>
+
+    <h2>Progress</h2>
+    <table class="table table-hover">
+        <tr>
+            <th>タスク進捗</th>
+            <th>タスク内容</th>
+            <th>見積もり時間</th>
+            <th>途中経過</th>
+        </tr>
+        <% @tasks_progress.each do |task| %>
+        <tr>
+            <td>
+                <%= form_with url: change_status_path, scope: :task do |f| %>
+                    <%= f.hidden_field :id, value: task.id %>
+                    <%= f.hidden_field :status, value: task.status %>
+                    <%= f.submit ["作業開始", "実施中", "完了"][task.status || 0], class: "btn_21" %>
+                <% end %>
+            </td>
+        <td><%= task.task_name %></td>
+        <td><%= task.estimated_time%>min</td> 
+        <td><%= task.actual_time%>min</td> 
+        </tr>
+        <% end %>
+    </table>
+    <br>
+
+    <div class="parent">
+        <span class="dli-caret-down"></span>
+    </div>
 
     <h2>Done</h2>
     <table class="table table-hover">
         <tr>
             <th>タスク進捗</th>
             <th>タスク内容</th>
-            <th>見積もり時間(min)</th>
-            <th>実働時間(min)</th>
-            <th>見積もり誤差(min)</th>
-            <th></th>
-            <th></th>
+            <th>見積もり時間</th>
+            <th>経過時間</th>
+            <th>見積もり誤差</th>
         </tr>
         <% @tasks_done.each do |task| %>
         <tr>
@@ -119,22 +149,22 @@
                 <%= form_with url: change_status_path, scope: :task do |f| %>
                     <%= f.hidden_field :id, value: task.id %>   
                     <%= f.hidden_field :status, value: task.status %>
-                    <%= f.submit ["作業開始", "実施中", "完了"][task.status || 0], class: "btn btn-dark" %>
+                    <%= f.submit ["作業開始", "実施中", "完了"][task.status || 0], class: "btn btn-dark", style: "width: 100px;" %>
                 <% end %>
             </td>
             <td><%= task.task_name %></td>
-            <td><%= task.estimated_time%></td> 
-            <td><%= task.actual_time%></td> 
+            <td><%= task.estimated_time%>min</td> 
+            <td><%= task.actual_time%>min</td> 
             <td>
             <% error_time_abs = (task.actual_time - task.estimated_time).abs %>
             <% if error_time_abs <= 10 %>
-                <% text = "±#{error_time_abs}" %>
+                <% text = "±#{error_time_abs}min" %>
                 <% color = "green" %>
             <% elsif error_time_abs <= 20 %>
-                <% text = "±#{error_time_abs}" %>
+                <% text = "±#{error_time_abs}min" %>
                 <% color = "orange" %>
             <% else %>
-                <% text = "±#{error_time_abs}" %>
+                <% text = "±#{error_time_abs}min" %>
                 <% color = "red" %>
             <% end %>
                 <span style="color:<%= color %>"><b><%= text %></b></span>
