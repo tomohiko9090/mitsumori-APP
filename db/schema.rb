@@ -12,10 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2022_08_08_075632) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
-  create_table "tasks", force: :cascade do |t|
+  create_table "tasks", charset: "utf8mb3", force: :cascade do |t|
     t.integer "user_id"
     t.integer "estimated_time"
     t.integer "actual_time", default: 0
@@ -26,8 +23,8 @@ ActiveRecord::Schema.define(version: 2022_08_08_075632) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "users", force: :cascade do |t|
-    t.integer "level"
+  create_table "users", charset: "utf8mb3", force: :cascade do |t|
+    t.integer "level", default: 1
     t.date "birth_date"
     t.string "name"
     t.string "nickname"
