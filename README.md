@@ -14,7 +14,7 @@ https://mitsumoriheroku.herokuapp.com/tasks
 - Vue.js
 
 ### データベース
-- postgresql 14.4
+- Mysql2
 
 ### サーバー
 -
