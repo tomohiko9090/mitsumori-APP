@@ -1,4 +1,4 @@
-def insertTestData(user_id)
+def insert_task_data(user_id)
 
   # 明後日以降のタスク
   Task.create(user_id: user_id, status: 0, task_name: "ER図の作成", estimated_time: 50, actual_time: 0)
@@ -87,12 +87,11 @@ def insertTestData(user_id)
 end
 
 
+User.create(name: "管理者", level: 3, birth_date: "1997/04/05", email: "admin@gmail.com", password: "test2", nickname: "admin")
 User.create(name: "未来のワクワクさん", level: 3, birth_date: "1997/04/05", email: "tomo.k9090@gmail.com", password: "test2", nickname: "未来のワクワク")
-User.create(name: "葛葉朋彦", level: 1, birth_date: "1997/04/05", email: "kuzuba.tomohiko@lmi.ne.jp", password: "", nickname: "葛葉朋彦")
-
-
-# User.delete_all
+User.create(name: "葛葉朋彦", level: 1, birth_date: "1997/04/05", email: "kuzuba.tomohiko@lmi.ne.jp", password: "test2", nickname: "葛葉朋彦")
 User.create(name: "テストさん", level: 1, birth_date: "1997/04/05", email: "test@gmail.com", password: "test2", nickname: "テスト")
 
-Task.delete_all
-insertTestData(11)
+
+# Task.delete_all
+insert_task_data(11)
