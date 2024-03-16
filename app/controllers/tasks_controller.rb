@@ -8,7 +8,7 @@ class TasksController < ApplicationController
   end
 
   def index
-    today = "#{DateTime.now.year}/#{DateTime.now.month}/#{DateTime.now.day}"
+    today = "#{Time.zone.now.year}/#{Time.zone.now.month}/#{Time.zone.now.day}"
     @user = current_user
     @task = Task.new
     @tasks_future = Task.where(user_id: @user.id, action_date: nil).order(:status, :created_at)

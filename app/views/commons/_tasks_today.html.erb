@@ -2,12 +2,11 @@
     <img src="/assets/palette.png" width="450" height="400">
     <div class="balloon1-left">
         <h4>
-            <p>今日は<%= "#{DateTime.now.year}年#{DateTime.now.month}月#{DateTime.now.day}日" %>です。</p>
-            <p>
-            本日のタスクの総見積もり時間は、
+            <p><%= @user.nickname %>さん、こんにちは！</p>
+            <p>本日<%= "#{DateTime.now.year}年#{DateTime.now.month}月#{DateTime.now.day}日" %>の見積もり総量は、</p>
             <% total_todays_estimated_time = 0 %>
             <% @tasks_todo.map{|task| total_todays_estimated_time += task.estimated_time } %>
-            <b><%= total_todays_estimated_time/60 %>時間<%= total_todays_estimated_time%60 %>分</b>です。
+            『<b><%= total_todays_estimated_time/60 %>時間<%= total_todays_estimated_time%60 %>分』</b>です。
             </p>
             <p> <% today = "#{DateTime.now.year}/#{DateTime.now.month}/#{DateTime.now.day}" %>
                 <% past_total_estimated = Task.where(user_id: @user.id).where.not(action_date: [nil, today]).sum(:actual_time) %>
