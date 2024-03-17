@@ -13,6 +13,12 @@ development:
   password: taitasu2
   host: localhost
 
+test:
+  <<: *default
+  database: taskapp_test
+  username: root
+  password: taitasu2
+
 production:
   <<: *default
   database: taskapp_production
