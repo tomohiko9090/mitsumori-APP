@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2022_08_08_075632) do
 
-  create_table "tasks", charset: "utf8mb3", force: :cascade do |t|
+  create_table "tasks", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.integer "user_id"
     t.integer "estimated_time"
     t.integer "actual_time", default: 0
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 2022_08_08_075632) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "users", charset: "utf8mb3", force: :cascade do |t|
+  create_table "users", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.integer "level", default: 1
     t.date "birth_date"
     t.string "name"

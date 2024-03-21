@@ -1,26 +1,19 @@
 default: &default
   adapter: mysql2
   encoding: utf8
-  # For details on connection pooling, see Rails configuration guide
-  # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: <%= ENV['DB_USERNAME'] || 'root' %>
+  password: <%= ENV['DB_PASSWORD'] || 'taitasu2' %>
+  host: <%= ENV['DB_HOST'] || 'db' %>
 
 development:
   <<: *default
-  reconnect: false
-  database: taskapp_development
-  username: root
-  password: taitasu2
-  host: localhost
+  database: <%= ENV['DB_NAME_DEVELOPMENT'] || 'taskapp_development' %>
 
 test:
   <<: *default
-  database: taskapp_test
-  username: root
-  password: taitasu2
+  database: <%= ENV['DB_NAME_TEST'] || 'taskapp_test' %>
 
 production:
   <<: *default
-  database: taskapp_production
-  username: root
-  password: taitasu2
+  database: <%= ENV['DB_NAME_PRODUCTION'] || 'taskapp_production' %>
