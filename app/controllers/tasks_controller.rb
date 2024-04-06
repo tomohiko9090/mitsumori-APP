@@ -88,7 +88,7 @@ class TasksController < ApplicationController
     task_id = params[:task_today][:id]
     action_date = params[:task_today][:action_date]
     if action_date == ""
-      today = "#{DateTime.now.year}/#{DateTime.now.month}/#{DateTime.now.day}"
+      today = "#{Time.zone.now.year}/#{Time.zone.now.month}/#{Time.zone.now.day}"
       Task.where(id: task_id).update(action_date: today)
       session[:tab] = 2
     else

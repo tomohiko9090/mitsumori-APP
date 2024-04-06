@@ -3,12 +3,12 @@
     <div class="balloon1-left">
         <h4>
             <p><%= @user.nickname %>さん、こんにちは！</p>
-            <p>本日<%= "#{DateTime.now.year}年#{DateTime.now.month}月#{DateTime.now.day}日" %>の見積もり総量は、</p>
+            <p>本日<%= "#{Time.zone.now.year}年#{Time.zone.now.month}月#{Time.zone.now.day}日" %>の見積もり総量は、</p>
             <% total_todays_estimated_time = 0 %>
             <% @tasks_todo.map{|task| total_todays_estimated_time += task.estimated_time } %>
             『<b><%= total_todays_estimated_time/60 %>時間<%= total_todays_estimated_time%60 %>分』</b>です。
             </p>
-            <p> <% today = "#{DateTime.now.year}/#{DateTime.now.month}/#{DateTime.now.day}" %>
+            <p> <% today = "#{Time.zone.now.year}/#{Time.zone.now.month}/#{Time.zone.now.day}" %>
                 <% past_total_estimated = Task.where(user_id: @user.id).where.not(action_date: [nil, today]).sum(:actual_time) %>
                 <% s = Task.where(user_id: @user.id).where.not(action_date: [nil, today]).group(:action_date).size.length %>
                 <% if s == 0 %>
@@ -59,7 +59,7 @@
             </div>
         </div>
     </div>
-    <%= f.hidden_field :action_date, value: "#{DateTime.now.year}/#{DateTime.now.month}/#{DateTime.now.day}" %>
+    <%= f.hidden_field :action_date, value: "#{Time.zone.now.year}/#{Time.zone.now.month}/#{Time.zone.now.day}" %>
     <%= f.submit "登録する", class: "bubbly-button" %>
     <% end %>
 </div>
