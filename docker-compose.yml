@@ -18,10 +18,3 @@ services:
       - "3000:3000"
     depends_on:
       - db
-    # environment:
-    #   DB_HOST: db
-    #   DB_USERNAME: root
-    #   DB_PASSWORD: taitasu2
-    #   DB_NAME_DEVELOPMENT: taskapp_development
-    #   DB_NAME_TEST: taskapp_test
-    #   DB_NAME_PRODUCTION: taskapp_production
